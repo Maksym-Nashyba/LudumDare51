@@ -7,7 +7,7 @@ namespace NPCs
 {
     public class SuspiciousObjectsDetector : MonoBehaviour
     {
-        public event Action<SuspiciousObject.Types> Detected;
+        public event Action<SuspiciousObject> Detected;
         public float Radius => _radius;
         [SerializeField] private float _radius;
         [SerializeField] private CapsuleCollider _trigger;
@@ -55,7 +55,7 @@ namespace NPCs
 
         private void Detect(SuspiciousObject suspiciousObject)
         {
-            Detected?.Invoke(suspiciousObject.Type);
+            Detected?.Invoke(suspiciousObject);
             _previouslyDetected.Add(suspiciousObject);
         }
         

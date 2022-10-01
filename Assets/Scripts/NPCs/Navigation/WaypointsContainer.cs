@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Interactables;
 using UnityEngine;
 
@@ -34,6 +36,26 @@ namespace NPCs.Navigation
             return best;
         }
 
+        public Waypoint GetBestWaypointForEscape(Vector3 start, Vector3 threat)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Waypoint GetWaypointsByAlignment()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Waypoint[] GetWaypointsByDistance()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Waypoint[] GetWaypointsByClosestEdge()
+        {
+            throw new NotImplementedException();
+        }
+        
         public AlarmBox GetClosestInactiveAlarmBox(Vector3 transformPosition)
         {
             float closest = float.MaxValue;

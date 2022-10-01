@@ -78,6 +78,13 @@ namespace NPCs
         
         protected class RunForLifeState : State
         {
+            private Transform _threatTransform;
+            
+            public RunForLifeState(Transform threatTransform)
+            {
+                _threatTransform = threatTransform;
+            }
+
             public override void OnStart(Context context)
             {
                 throw new System.NotImplementedException();

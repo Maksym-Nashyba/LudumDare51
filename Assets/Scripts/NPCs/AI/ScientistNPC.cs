@@ -13,13 +13,13 @@ namespace NPCs.AI
             Detector.Detected += OnDetected;
         }
 
-        private void OnDetected(SuspiciousObject.Types types)
+        private void OnDetected(SuspiciousObject suspiciousObject)
         {
-            switch (types)
+            switch (suspiciousObject.Type)
             {
                 case SuspiciousObject.Types.Parasite:
                     AlarmBox alarmBox = ServiceLocator.WaypointsContainer.GetClosestInactiveAlarmBox(Transform.position);
-                    if(alarmBox.Activated) ChangeState(new RunForLifeState());
+                    if(alarmBox.Activated) ChangeState(new RunForLifeState(suspiciousObject.transform));
                     else ChangeState(new RunForAlarmState(alarmBox));
                     break;
                 
@@ -30,7 +30,7 @@ namespace NPCs.AI
                     break;
                 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(types), types, null);
+                    throw new NotImplementedException();
             }
         }
 
