@@ -11,12 +11,14 @@ Assets/Plugins/Editor/JetBrains*
 
 ### Unity ###
 [Ll]ibrary/
+[Ll]ogs/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
 # Unity local user project setting
+Logs/
 UserSettings/
 
 # Visual Studio cache directory
@@ -51,3 +53,19 @@ sysinfo.txt
 *.unitypackage
 
 # End of https://www.gitignore.io/api/unity
+*.log
+Logs/shadercompiler-UnityShaderCompiler.exe9.log
+Logs/shadercompiler-UnityShaderCompiler.exe8.log
+Logs/shadercompiler-UnityShaderCompiler.exe7.log
+Logs/shadercompiler-UnityShaderCompiler.exe6.log
+Logs/shadercompiler-UnityShaderCompiler.exe5.log
+Logs/shadercompiler-UnityShaderCompiler.exe4.log
+Logs/shadercompiler-UnityShaderCompiler.exe3.log
+Logs/shadercompiler-UnityShaderCompiler.exe2.log
+Logs/shadercompiler-UnityShaderCompiler.exe11.log
+Logs/shadercompiler-UnityShaderCompiler.exe10.log
+Logs/shadercompiler-UnityShaderCompiler.exe1.log
+Logs/shadercompiler-UnityShaderCompiler.exe0.log
+Logs/shadercompiler-AssetImportWorker0.log
+Logs/AssetImportWorker1.log
+Logs/AssetImportWorker0.log
