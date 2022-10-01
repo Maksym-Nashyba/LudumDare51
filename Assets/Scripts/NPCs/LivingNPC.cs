@@ -7,8 +7,16 @@ using UnityEngine;
 
 namespace NPCs
 {
-    public class LivingNPC : NPC, IInteractable
+    public abstract class LivingNPC : NPC, IInteractable
     {
+        protected SuspiciousObjectsDetector Detector;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Detector = GetComponentInChildren<SuspiciousObjectsDetector>();
+        }
+
         private void Start()
         {
             ChangeState(new IdleState());

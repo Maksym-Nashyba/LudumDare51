@@ -11,7 +11,7 @@ public abstract class NPC : MonoBehaviour
     protected State CurrentState;
     private Coroutine _runningStateCoroutine;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         WaypointsContainer = FindObjectOfType<WaypointsContainer>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
