@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NPCs
 {
-    public class Living : NPC
+    public class LivingNPC : NPC
     {
         private void Start()
         {
@@ -45,7 +45,6 @@ namespace NPCs
 
             public override IEnumerator Act()
             {
-                
                 
                 
                 yield return null;
