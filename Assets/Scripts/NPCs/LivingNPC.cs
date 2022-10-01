@@ -1,11 +1,13 @@
 ﻿using System.Collections;
+using Interactables;
 using Misc;
 using NPCs.Navigation;
+using Player;
 using UnityEngine;
 
 namespace NPCs
 {
-    public class LivingNPC : NPC
+    public class LivingNPC : NPC, IInteractable
     {
         private void Start()
         {
@@ -61,6 +63,9 @@ namespace NPCs
             }
         }
         
-        
+        public void AcceptVisitor(IVisitor visitor)
+        {
+            visitor.Interact(this);
+        }
     }
 }
