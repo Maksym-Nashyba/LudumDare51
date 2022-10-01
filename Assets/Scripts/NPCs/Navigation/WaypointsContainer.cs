@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Interactables;
 using UnityEngine;
 
 namespace NPCs.Navigation
@@ -7,19 +8,15 @@ namespace NPCs.Navigation
     {
         public IReadOnlyList<Waypoint> Waypoints => _waypoints;
         private List<Waypoint> _waypoints;
+        private List<AlarmBox> _alarmBoxes;
         private Transform _transform;
         
         private void Awake()
         {
             _transform = GetComponent<Transform>();
-            _waypoints = GetWaypointsFromChildren();
+            _waypoints = new List<Waypoint>(_transform.GetComponentsInChildren<Waypoint>());
+            _alarmBoxes = new List<AlarmBox>(_transform.GetComponentsInChildren<AlarmBox>());
         }
-
-        private List<Waypoint> GetWaypointsFromChildren()
-        {
-            return new List<Waypoint>(_transform.GetComponentsInChildren<Waypoint>());
-        }
-
 
         public Waypoint GetClosestWaypoint(Vector3 transformPosition)
         {
@@ -36,6 +33,11 @@ namespace NPCs.Navigation
             }
 
             return best;
+        }
+
+        public AlarmBox GetClosestInactiveAlarmBox(Vector3 transformPosition)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Interactables;
+using Misc;
 
 namespace NPCs.AI
 {
@@ -17,7 +18,7 @@ namespace NPCs.AI
             switch (types)
             {
                 case SuspiciousObject.Types.Parasite:
-                    
+                    ServiceLocator.WaypointsContainer.GetClosestInactiveAlarmBox(Transform.position);
                     break;
                 case SuspiciousObject.Types.Corpse:
                     break;
