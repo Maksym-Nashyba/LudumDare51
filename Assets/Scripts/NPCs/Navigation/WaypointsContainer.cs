@@ -31,13 +31,23 @@ namespace NPCs.Navigation
                     best = waypoint;
                 }
             }
-
             return best;
         }
 
         public AlarmBox GetClosestInactiveAlarmBox(Vector3 transformPosition)
         {
-            throw new System.NotImplementedException();
+            float closest = float.MaxValue;
+            AlarmBox best = _alarmBoxes[0];
+            foreach (AlarmBox box in _alarmBoxes)
+            {
+                float current = (transformPosition - box.Position).sqrMagnitude;
+                if (current  < closest)
+                {
+                    closest = current;
+                    best = box;
+                }
+            }
+            return best;
         }
     }
 }

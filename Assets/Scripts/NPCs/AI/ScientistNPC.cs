@@ -18,12 +18,17 @@ namespace NPCs.AI
             switch (types)
             {
                 case SuspiciousObject.Types.Parasite:
-                    ServiceLocator.WaypointsContainer.GetClosestInactiveAlarmBox(Transform.position);
+                    AlarmBox alarmBox = ServiceLocator.WaypointsContainer.GetClosestInactiveAlarmBox(Transform.position);
+                    if(alarmBox.Activated) ChangeState(new RunForLifeState());
+                    else ChangeState(new RunForAlarmState(alarmBox));
                     break;
+                
                 case SuspiciousObject.Types.Corpse:
                     break;
+                
                 case SuspiciousObject.Types.Blood:
                     break;
+                
                 default:
                     throw new ArgumentOutOfRangeException(nameof(types), types, null);
             }
@@ -36,15 +41,21 @@ namespace NPCs.AI
         
         private class RunForAlarmState : State
         {
-            private const float TargetDistanceToBox = 0.5f;
+            private const float TargetDistanceToBox = 0.75f;
             private Context _context;
             private AlarmBox _alarmBox;
             private ScientistNPC _scientist;
-            
+
+            public RunForAlarmState(AlarmBox alarmBox)
+            {
+                _alarmBox = alarmBox;
+            }
+
             public override void OnStart(Context context)
             {
                 _context = context;
                 _scientist = (ScientistNPC)context.NPC;
+                _context.NavMeshAgent.SetDestination(_alarmBox.Position);
             }
 
             public override IEnumerator Act()

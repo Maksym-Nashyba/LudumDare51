@@ -25,7 +25,7 @@ public abstract class NPC : MonoBehaviour
 
     protected void ChangeState(State nextState)
     {
-        if(_runningStateCoroutine is not null)StopCoroutine(_runningStateCoroutine);
+        StopAllCoroutines();
         CurrentState?.OnEnd();
         CurrentState = nextState;
         CurrentState.OnStart(GetContext());

@@ -62,10 +62,10 @@ namespace NPCs
         public bool CanSee(Transform target)
         {
             Vector3 detectorPosition = _transform.position;
-            Vector2 direction = target.position - detectorPosition;
-            Ray ray = new Ray(detectorPosition, new Vector3(direction.x, 0, direction.y));
+            Vector3 direction = target.position - detectorPosition;
+            Ray ray = new Ray(detectorPosition, new Vector3(direction.x, 0, direction.z));
             Physics.Raycast(ray, out RaycastHit hit);
-            Debug.DrawRay(detectorPosition, new Vector3(direction.x, 0, direction.y), Color.green);
+            Debug.DrawRay(detectorPosition, new Vector3(direction.x, 0, direction.z), Color.green);
             return hit.transform == target;
         }
 

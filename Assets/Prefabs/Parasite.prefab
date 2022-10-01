@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1410002486089405222}
   - component: {fileID: 1410002486089405225}
   - component: {fileID: 1410002486089405220}
+  - component: {fileID: -4144022534625937783}
   m_Layer: 6
   m_Name: Parasite
   m_TagString: Untagged
@@ -167,6 +168,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2809a5b0848a480d52a2a67db963a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4144022534625937783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410002486089405227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37db6d9c8087484083eb25721a9c7c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
 --- !u!1 &4383733733287955809
 GameObject:
   m_ObjectHideFlags: 0

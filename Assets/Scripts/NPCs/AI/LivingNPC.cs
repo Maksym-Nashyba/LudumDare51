@@ -76,6 +76,24 @@ namespace NPCs
             }
         }
         
+        protected class RunForLifeState : State
+        {
+            public override void OnStart(Context context)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public override IEnumerator Act()
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public override void OnEnd()
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+        
         public void AcceptVisitor(IVisitor visitor)
         {
             visitor.Interact(this);
