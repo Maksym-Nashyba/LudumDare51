@@ -12,12 +12,12 @@ namespace NPCs
             ChangeState(new IdleState());
         }
 
-        protected virtual void WalkToPosition(Vector3 target)
+        public virtual void WalkToPosition(Vector3 target)
         {
             NavMeshAgent.SetDestination(target);
         }
 
-        protected virtual void Die(DeathCauses deathCause)
+        public virtual void Die(DeathCauses deathCause)
         {
             
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace NPCs.Navigation
@@ -24,7 +23,19 @@ namespace NPCs.Navigation
 
         public Waypoint GetClosestWaypoint(Vector3 transformPosition)
         {
-            throw new NotImplementedException();
+            float closest = float.MaxValue;
+            Waypoint best = _waypoints[0];
+            foreach (Waypoint waypoint in _waypoints)
+            {
+                float current = (transformPosition - waypoint.Transform.position).sqrMagnitude;
+                if (current  < closest)
+                {
+                    closest = current;
+                    best = waypoint;
+                }
+            }
+
+            return best;
         }
     }
 }
