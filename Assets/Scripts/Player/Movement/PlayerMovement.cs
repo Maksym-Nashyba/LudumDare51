@@ -1,4 +1,4 @@
-﻿namespace Player
+﻿namespace Player.Movement
 {
     public abstract class PlayerMovement
     {

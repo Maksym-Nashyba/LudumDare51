@@ -1,9 +1,12 @@
 ﻿using Interactables;
+using NPCs;
 
 namespace Player
 {
     public interface IVisitor
     {
-        public void Interact(IInteractable interactable);
+        public void Interact(Door door);
+
+        public void Interact(LivingNPC livingNpc);
     }
 }

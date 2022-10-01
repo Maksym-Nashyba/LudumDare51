@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 2949642377493939787}
   - component: {fileID: 587575056779275635}
   - component: {fileID: 587575056779275629}
+  - component: {fileID: 3885766276086420736}
   m_Layer: 0
   m_Name: Scientist
   m_TagString: Untagged
@@ -229,6 +230,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
+--- !u!114 &3885766276086420736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587575056779275632}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92dcd083d2be464dbe9d8e42ab6fa86c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &587575057620760207
 GameObject:
   m_ObjectHideFlags: 0

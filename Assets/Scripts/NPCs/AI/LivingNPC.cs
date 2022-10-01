@@ -29,7 +29,12 @@ namespace NPCs
 
         public virtual void Die(DeathCauses deathCause)
         {
-            
+            Destroy(gameObject);
+        }
+
+        public void GetInfected()
+        {
+            StopAllCoroutines();
         }
 
         public enum DeathCauses
