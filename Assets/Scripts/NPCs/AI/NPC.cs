@@ -39,12 +39,14 @@ public abstract class NPC : MonoBehaviour
         public WaypointsContainer WaypointsContainer;
         public NavMeshAgent NavMeshAgent;
         public Transform Transform;
+        public NPC NPC;
 
-        public Context(WaypointsContainer waypointsContainer, NavMeshAgent navMeshAgent, Transform transform)
+        public Context(WaypointsContainer waypointsContainer, NavMeshAgent navMeshAgent, Transform transform, NPC npc)
         {
             WaypointsContainer = waypointsContainer;
             NavMeshAgent = navMeshAgent;
             Transform = transform;
+            NPC = npc;
         }
     }
     

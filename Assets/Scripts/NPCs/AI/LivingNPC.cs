@@ -41,7 +41,7 @@ namespace NPCs
         
         protected override Context GetContext()
         {
-            return new Context(WaypointsContainer, NavMeshAgent, Transform);
+            return new Context(WaypointsContainer, NavMeshAgent, Transform, this);
         }
         
         protected class IdleState : State
