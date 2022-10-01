@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace Player
 {
-    
+    public class PlayerController : MonoBehaviour
+    {
+
+    }
 }
