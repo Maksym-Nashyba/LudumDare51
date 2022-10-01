@@ -21,7 +21,7 @@ namespace Player.Controllers
 
         public virtual void Interact(Door door)
         {
-            door.gameObject.SetActive(false);
+            door.Animator.SetTrigger("DoorTrigger");
         }
 
         public virtual void Interact(LivingNPC livingNpc)
@@ -43,6 +43,9 @@ namespace Player.Controllers
             livingNPC.GetInfected();
             livingNPC.gameObject.GetComponent<NPC>().enabled = false;
             livingNPC.gameObject.AddComponent<Player>();
+            HostLifeTimer timer = livingNPC.gameObject.GetComponentInChildren<HostLifeTimer>(true);
+            timer.gameObject.SetActive(true);
+            timer.BeginCountdown(livingNPC.GetComponent<PlayerController>().LeaveHost);
         }
 
         protected void DestroyPlayer()
