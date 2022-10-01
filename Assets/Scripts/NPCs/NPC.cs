@@ -28,8 +28,8 @@ public abstract class NPC : MonoBehaviour
         if(_runningStateCoroutine is not null)StopCoroutine(_runningStateCoroutine);
         CurrentState?.OnEnd();
         CurrentState = nextState;
-        StartCoroutine(CurrentState.Act());
         CurrentState.OnStart(GetContext());
+        StartCoroutine(CurrentState.Act());
     }
 
     protected abstract Context GetContext();

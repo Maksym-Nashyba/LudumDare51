@@ -52,7 +52,7 @@ namespace NPCs
                 {
                     _idlingPosition = Utils.GetPointInRadiusFlat(_idlingWaypoint.Transform.position, _idlingWaypoint.Radius);
                     _context.NavMeshAgent.SetDestination(_idlingPosition);
-                    yield return new WaitForSeconds(Random.Range(2f, 5f));
+                    yield return new WaitForSeconds(Random.Range(2f, 8f));
                 }
             }
 
@@ -60,5 +60,7 @@ namespace NPCs
             {
             }
         }
+        
+        
     }
 }
