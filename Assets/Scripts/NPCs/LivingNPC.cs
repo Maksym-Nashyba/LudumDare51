@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Misc;
 using NPCs.Navigation;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ namespace NPCs
         public enum DeathCauses
         {
             Default,
+            Shot,
             ParasiteLeaving
         }
         
@@ -36,6 +38,7 @@ namespace NPCs
         {
             private Context _context;
             private Waypoint _idlingWaypoint;
+            private Vector3 _idlingPosition;
             
             public override void OnStart(Context context)
             {
@@ -45,9 +48,12 @@ namespace NPCs
 
             public override IEnumerator Act()
             {
-                
-                
-                yield return null;
+                while (true)
+                {
+                    _idlingPosition = Utils.GetPointInRadiusFlat(_idlingWaypoint.Transform.position, _idlingWaypoint.Radius);
+                    _context.NavMeshAgent.SetDestination(_idlingPosition);
+                    yield return new WaitForSeconds(Random.Range(2f, 5f));
+                }
             }
 
             public override void OnEnd()
