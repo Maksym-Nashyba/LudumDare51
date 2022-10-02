@@ -20,7 +20,7 @@ namespace Player.Controllers
         
         public override void Interact(Door door)
         {
-            door.Animator.SetTrigger("DoorTrigger");
+            door.OpenDoor();
         }
 
         public override void Interact(LivingNPC livingNpc)
