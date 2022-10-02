@@ -1,18 +1,59 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Misc;
 using NPCs.Navigation;
+using Player.Controllers;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace NPCs.AI
 {
     public sealed class GuardNPC : HumanoidNPC
     {
         [SerializeField] private Waypoint[] _patrolPoints;
-        [SerializeField] private Transform _gunPoint;
+        [SerializeField] private GunPoint _gunPoint;
 
         protected override void Start()
         {
             base.Start();
             ChangeState(new PatrollingState(_patrolPoints));
+            Detector.Detected += OnDetected;
+        }
+
+        private void OnDetected(SuspiciousObject obj)
+        {
+            switch (obj.Type)
+            {
+                case SuspiciousObject.Types.Parasite:
+                    ChangeState(new HuntingState());
+                    break;
+                case SuspiciousObject.Types.Corpse:
+                    break;
+                case SuspiciousObject.Types.Blood:
+                    break;
+                case SuspiciousObject.Types.HiddenParasite:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+
+        public void ShootAt(Transform transform)
+        {
+            _gunPoint.DrawShotsTo(transform);
+            if (transform.TryGetComponent(out PlayerController controller))
+            {
+                controller.GetShot();
+                return;
+            }
+            if (!transform.TryGetComponent(out LivingNPC living)) return;
+            living.Die(DeathCauses.Shot);
+        }
+
+        private void OnDisable()
+        {
+            Detector.Detected -= OnDetected;
         }
 
         private sealed class PatrollingState : State
@@ -64,16 +105,21 @@ namespace NPCs.AI
 
         private sealed class HuntingState : State
         {
+            private GuardNPC _npc;
             
+            private Transform Target => ServiceLocator.PlayerInstance.transform;
             
             public override void Start(Context context)
             {
-                throw new System.NotImplementedException();
+                _npc = (GuardNPC)context.NPC;
+                _npc.StopMoving();
+                _npc.ShootAt(Target);
             }
 
             public override IEnumerator Act()
             {
-                throw new System.NotImplementedException();
+                yield return new WaitForSeconds(2f);
+                _npc.ChangeState(new PatrollingState(_npc._patrolPoints));
             }
 
             public override bool IsRelaxed()
