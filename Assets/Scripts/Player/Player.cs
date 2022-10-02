@@ -8,18 +8,19 @@ namespace Player
     public class Player : MonoBehaviour
     {
         private PlayerController _playerController;
+        public PlayerController PlayerController => _playerController;
 
-        private void OnEnable()
+        private void Awake()
         {
-            CheckPlayerController();
             ServiceLocator.PlayerInstance = this;
+            CheckPlayerController();
         }
 
         private void Update()
         {
             if(Input.GetMouseButtonUp(0))
             {
-                GameObject selectedGameObject = ScreenRaycasting.GetSelectedGameObject();
+                GameObject selectedGameObject = Raycasting.GetSelectedGameObject();
                 if (!selectedGameObject.TryGetComponent(out IInteractable interactable))
                 {
                     return;

@@ -1,4 +1,5 @@
 ﻿using Interactables;
+using Misc;
 using NPCs;
 using Player.Movement;
 
@@ -20,6 +21,7 @@ namespace Player.Controllers
         
         public override void Interact(Door door)
         {
+            if (!Raycasting.CheckObstacleBetween(transform.position, door.gameObject)) return;
             door.OpenDoor();
         }
 
@@ -27,6 +29,7 @@ namespace Player.Controllers
         {
             base.Interact(livingNpc);
             if (!isAlive) return;
+            if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
             ChangeComponentsOn(livingNpc);
             DestroyPlayer();
         }

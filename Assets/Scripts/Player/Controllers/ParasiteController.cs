@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Interactables;
+using Misc;
 using NPCs;
 using Player.Movement;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Player.Controllers
         
         public override void Interact(RatDoor ratDoor)
         {
+            if (!Raycasting.CheckObstacleBetween(transform.position, ratDoor.gameObject)) return;
             Vector3 position = ratDoor.GoThrough(transform.position);
             playerMovement.WarpPlayerToPoint(position);
         }
@@ -23,6 +25,7 @@ namespace Player.Controllers
         public override void Interact(LivingNPC livingNpc)
         {
             base.Interact(livingNpc);
+            if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
             StartCoroutine(AnimateChangingHost(livingNpc));
             ChangeComponentsOn(livingNpc);
         }

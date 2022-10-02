@@ -35,7 +35,7 @@ namespace Shaders
             {
                 SwitchToMaterial(_defaultMaterial);
                 _timeTillSwitchToDefault = 0;
-                _transparentMaterial.SetFloat(Oppacity, 0.8f);
+                _transparentMaterial.SetFloat(Oppacity, 0.228f);
             }
         }
 

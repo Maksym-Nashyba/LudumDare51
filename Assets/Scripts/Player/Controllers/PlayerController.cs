@@ -1,4 +1,3 @@
-using System.Collections;
 using Interactables;
 using Misc;
 using NPCs;
@@ -17,6 +16,11 @@ namespace Player.Controllers
         protected abstract void LeaveHost();
 
         //TODO protected abstract IEnumerator AnimateChangingHost(LivingNPC livingNpc);
+        
+        public virtual void GetShot()
+        {
+
+        }
         
         public void MovePlayer()
         {

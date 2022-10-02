@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 5697185976812733730}
   - component: {fileID: 5697185976812733731}
   m_Layer: 0
-  m_Name: Hatch
+  m_Name: RatDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
