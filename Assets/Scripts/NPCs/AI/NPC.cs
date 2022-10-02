@@ -18,17 +18,12 @@ public abstract class NPC : MonoBehaviour
         Transform = GetComponent<Transform>();
     }
 
-    private void Update()
-    {
-        CurrentState.Act();
-    }
-
     public void ChangeState(State nextState)
     {
         StopAllCoroutines();
-        CurrentState?.OnEnd();
+        CurrentState?.End();
         CurrentState = nextState;
-        CurrentState.OnStart(GetContext());
+        CurrentState.Start(GetContext());
         StartCoroutine(CurrentState.Act());
     }
 
@@ -52,10 +47,12 @@ public abstract class NPC : MonoBehaviour
     
     public abstract class State
     {
-        public abstract void OnStart(Context context);
+        public abstract void Start(Context context);
         
         public abstract IEnumerator Act();
         
-        public abstract void OnEnd();
+        public abstract void End();
+
+        public abstract bool IsRelaxed();
     }
 }

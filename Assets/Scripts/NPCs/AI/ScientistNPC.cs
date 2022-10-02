@@ -5,7 +5,7 @@ using Misc;
 
 namespace NPCs.AI
 {
-    public sealed class ScientistNPC : LivingNPC
+    public sealed class ScientistNPC : HumanoidNPC
     {
         protected override void Awake()
         {
@@ -52,11 +52,11 @@ namespace NPCs.AI
                 _alarmBox = alarmBox;
             }
 
-            public override void OnStart(Context context)
+            public override void Start(Context context)
             {
                 _context = context;
                 _scientist = (ScientistNPC)context.NPC;
-                _context.NavMeshAgent.SetDestination(_alarmBox.Position);
+                _scientist.RunToPosition(_alarmBox.Position);
             }
 
             public override IEnumerator Act()
@@ -71,9 +71,13 @@ namespace NPCs.AI
                 _scientist.ActivateAlarmBox(_alarmBox);
             }
 
-            public override void OnEnd()
+            public override void End()
             {
-                throw new NotImplementedException();
+            }
+
+            public override bool IsRelaxed()
+            {
+                return false;
             }
         }
     }

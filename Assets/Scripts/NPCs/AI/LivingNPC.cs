@@ -60,7 +60,7 @@ namespace NPCs
             private Waypoint _idlingWaypoint;
             private Vector3 _idlingPosition;
 
-            public override void OnStart(Context context)
+            public override void Start(Context context)
             {
                 _context = context;
                 _idlingWaypoint = context.WaypointsContainer.GetClosestWaypoint(context.Transform.position);
@@ -78,8 +78,13 @@ namespace NPCs
                 }
             }
 
-            public override void OnEnd()
+            public override void End()
             {
+            }
+
+            public override bool IsRelaxed()
+            {
+                return true;
             }
         }
 
@@ -96,7 +101,7 @@ namespace NPCs
                 _threatTransform = threatTransform;
             }
 
-            public override void OnStart(Context context)
+            public override void Start(Context context)
             {
                 _context = context;
                 _target = ServiceLocator.WaypointsContainer
@@ -118,8 +123,13 @@ namespace NPCs
                 _npc.ChangeState(new IdleState());
             }
 
-            public override void OnEnd()
+            public override void End()
             {
+            }
+
+            public override bool IsRelaxed()
+            {
+                return false;
             }
         }
 
