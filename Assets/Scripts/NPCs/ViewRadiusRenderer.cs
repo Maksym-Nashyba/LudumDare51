@@ -4,16 +4,19 @@ using UnityEngine;
 namespace NPCs
 {
     [RequireComponent(typeof(MeshFilter))]
+    [RequireComponent(typeof(MeshRenderer))]
     public class ViewRadiusRenderer : MonoBehaviour
     {
         [SerializeField] private SuspiciousObjectsDetector _detector;
         [SerializeField] private int _segments;
         private MeshFilter _filter;
+        private MeshRenderer _renderer;
         private Mesh _mesh;
 
         private void Awake()
         {
             _filter = GetComponent<MeshFilter>();
+            _renderer = GetComponent<MeshRenderer>();
         }
 
         private void Start()
@@ -24,6 +27,10 @@ namespace NPCs
             };
             _filter.mesh = _mesh;
             GenerateFullCircle(_mesh, _segments);
+            _detector.Disabled += () =>
+            {
+                _renderer.enabled = false;
+            };
         }
 
         private void Update()

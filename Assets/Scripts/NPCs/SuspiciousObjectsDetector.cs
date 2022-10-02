@@ -8,48 +8,28 @@ namespace NPCs
     public class SuspiciousObjectsDetector : MonoBehaviour
     {
         public event Action<SuspiciousObject> Detected;
+        public event Action Disabled;
         public float Radius => _radius;
         [SerializeField] private float _radius;
         [SerializeField] private CapsuleCollider _trigger;
         private Transform _transform;
         private List<SuspiciousObject> _previouslyDetected;
-        private List<Transform> _inRadius;
 
         private void Awake()
         {
             _transform = GetComponent<Transform>();
-            _inRadius = new List<Transform>();
             _previouslyDetected = new List<SuspiciousObject>();
             _trigger.radius = _radius;
         }
-
-        private void FixedUpdate()
-        {
-            if (_inRadius.Count <= 0) return;
-            for (var i = 0; i < _inRadius.Count; i++)
-            {
-                if (_inRadius[i] is null) continue;
-                if (CanSee(_inRadius[i]))
-                {
-                    Detect(_inRadius[i].GetComponent<SuspiciousObject>());
-                    _inRadius[i] = null;
-                }
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
+        
+        private void OnTriggerStay(Collider other)
         {
             if (!other.TryGetComponent(out SuspiciousObject suspiciousObject)) return;
             if (_previouslyDetected.Contains(suspiciousObject)) return;
-            
-            _inRadius.Add(suspiciousObject.transform);
-        }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (_inRadius.Contains(other.transform))
+            if (CanSee(suspiciousObject.transform))
             {
-                _inRadius.Remove(other.transform);
+                Detect(suspiciousObject);
             }
         }
 
@@ -75,6 +55,11 @@ namespace NPCs
             Ray ray = new Ray(_transform.position, new Vector3(direction.x, 0, direction.y));
             Physics.Raycast(ray, out RaycastHit hit);
             return hit;
+        }
+
+        public void Disable()
+        {
+            Disabled?.Invoke();
         }
     }
 }

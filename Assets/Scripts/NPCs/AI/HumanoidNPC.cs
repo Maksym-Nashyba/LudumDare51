@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Interactables;
 using Misc;
 using UnityEngine;

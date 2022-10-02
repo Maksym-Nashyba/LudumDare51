@@ -33,6 +33,11 @@ namespace NPCs
             NavMeshAgent.SetDestination(target);
         }
 
+        public virtual void StopMoving()
+        {
+            NavMeshAgent.ResetPath();
+        }
+        
         public virtual void Die(DeathCauses deathCause)
         {
             Destroy(gameObject);
@@ -41,6 +46,8 @@ namespace NPCs
         public void GetInfected()
         {
             StopAllCoroutines();
+            Detector.Disable();
+            StopMoving();
         }
 
         public enum DeathCauses
