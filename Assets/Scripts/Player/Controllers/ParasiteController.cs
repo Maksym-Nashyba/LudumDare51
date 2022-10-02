@@ -14,7 +14,12 @@ namespace Player.Controllers
         {
             playerMovement = new ParasiteMovement(GetComponent<NavMeshAgent>());
         }
-        
+
+        public override void GetShot()
+        {
+            DestroyPlayer();
+        }
+
         public override void Interact(RatDoor ratDoor)
         {
             if (!Raycasting.CheckObstacleBetween(transform.position, ratDoor.gameObject)) return;

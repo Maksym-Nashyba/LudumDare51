@@ -9,7 +9,7 @@ namespace Player.Controllers
     {
         private LivingNPC _host;
         
-        private void OnEnable()
+        private void Awake()
         {
             _host = GetComponent<LivingNPC>();
         }
@@ -17,6 +17,12 @@ namespace Player.Controllers
         public override void ApplyPlayerMovement()
         {
             playerMovement = new RatMovement(_host);
+        }
+        
+        public override void GetShot()
+        {
+            enabled = false;
+            _host.Die(LivingNPC.DeathCauses.Shot);
         }
         
         public override void Interact(RatDoor ratDoor)

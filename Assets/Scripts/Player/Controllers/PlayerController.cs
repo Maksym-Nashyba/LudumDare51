@@ -19,7 +19,6 @@ namespace Player.Controllers
         
         public virtual void GetShot()
         {
-
         }
         
         public void MovePlayer()

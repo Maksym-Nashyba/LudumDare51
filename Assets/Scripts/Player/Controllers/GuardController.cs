@@ -1,6 +1,7 @@
 ﻿using Interactables;
 using Misc;
 using NPCs;
+using NPCs.AI;
 using Player.Movement;
 
 namespace Player.Controllers
@@ -9,7 +10,7 @@ namespace Player.Controllers
     {
         private LivingNPC _host;
         
-        private void OnEnable()
+        private void Awake()
         {
             _host = GetComponent<LivingNPC>();
         }
@@ -18,7 +19,13 @@ namespace Player.Controllers
         {
             playerMovement = new HumanoidMovement(_host);
         }
-        
+
+        public override void GetShot()
+        {
+            enabled = false;
+            _host.Die(LivingNPC.DeathCauses.Shot);
+        }
+
         public override void Interact(Door door)
         {
             if (!Raycasting.CheckObstacleBetween(transform.position, door.gameObject)) return;
@@ -27,11 +34,7 @@ namespace Player.Controllers
 
         public override void Interact(LivingNPC livingNpc)
         {
-            base.Interact(livingNpc);
-            if (!isAlive) return;
-            if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
-            ChangeComponentsOn(livingNpc);
-            DestroyPlayer();
+            ((GuardNPC)_host).ShootAt(livingNpc.transform);
         }
         
         protected override void LeaveHost()
