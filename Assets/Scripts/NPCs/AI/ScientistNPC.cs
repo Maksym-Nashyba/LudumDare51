@@ -71,10 +71,6 @@ namespace NPCs.AI
                 _scientist.ActivateAlarmBox(_alarmBox);
             }
 
-            public override void End()
-            {
-            }
-
             public override bool IsRelaxed()
             {
                 return false;

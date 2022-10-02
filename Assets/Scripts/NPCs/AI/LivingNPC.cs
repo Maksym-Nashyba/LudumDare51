@@ -18,7 +18,7 @@ namespace NPCs
             Detector = GetComponentInChildren<SuspiciousObjectsDetector>();
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             ChangeState(new IdleState());
         }
@@ -80,14 +80,10 @@ namespace NPCs
                 while (true)
                 {
                     _idlingPosition =
-                        Utils.GetPointInRadiusFlat(_idlingWaypoint.Transform.position, _idlingWaypoint.Radius);
+                        Utils.GetPointInRadiusFlat(_idlingWaypoint.Position, _idlingWaypoint.Radius);
                     npc.WalkToPosition(_idlingPosition);
                     yield return new WaitForSeconds(Random.Range(2f, 8f));
                 }
-            }
-
-            public override void End()
-            {
             }
 
             public override bool IsRelaxed()
@@ -116,7 +112,7 @@ namespace NPCs
                     .GetBestWaypointForEscape(context.Transform.position, _threatTransform.position);
                 _targetDistanceToTarget = _target.Radius / 2f;
                 _npc = (LivingNPC)context.NPC;
-                _npc.RunToPosition(_target.Transform.position);
+                _npc.RunToPosition(_target.Position);
             }
 
             public override IEnumerator Act()
@@ -124,15 +120,11 @@ namespace NPCs
                 bool tooFar = true;
                 while (tooFar)
                 {
-                    float distanceSqr = (_target.Transform.position - _context.Transform.position).sqrMagnitude;
+                    float distanceSqr = (_target.Position - _context.Transform.position).sqrMagnitude;
                     tooFar = distanceSqr > _targetDistanceToTarget * _targetDistanceToTarget;
                     yield return null;
                 }
                 _npc.ChangeState(new IdleState());
-            }
-
-            public override void End()
-            {
             }
 
             public override bool IsRelaxed()

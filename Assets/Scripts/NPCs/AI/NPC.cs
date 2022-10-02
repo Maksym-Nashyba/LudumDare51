@@ -21,7 +21,6 @@ public abstract class NPC : MonoBehaviour
     public void ChangeState(State nextState)
     {
         StopAllCoroutines();
-        CurrentState?.End();
         CurrentState = nextState;
         CurrentState.Start(GetContext());
         StartCoroutine(CurrentState.Act());
@@ -50,8 +49,6 @@ public abstract class NPC : MonoBehaviour
         public abstract void Start(Context context);
         
         public abstract IEnumerator Act();
-        
-        public abstract void End();
 
         public abstract bool IsRelaxed();
     }

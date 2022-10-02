@@ -93,10 +93,6 @@ namespace NPCs.AI
                 _npc.ChangeState(_continueState);
             }
 
-            public override void End()
-            {
-            }
-
             public override bool IsRelaxed()
             {
                 return _continueState.IsRelaxed();

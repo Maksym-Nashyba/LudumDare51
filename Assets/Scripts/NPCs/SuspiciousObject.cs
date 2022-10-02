@@ -11,7 +11,8 @@ namespace NPCs
         {
             Parasite,
             Corpse,
-            Blood
+            Blood,
+            HiddenParasite
         }
     }
 }

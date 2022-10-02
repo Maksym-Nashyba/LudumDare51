@@ -6,7 +6,7 @@ namespace NPCs.Navigation
     {
         public float Radius => _radius;
         [SerializeField] private float _radius;
-        public Transform Transform => _transform;
+        public Vector3 Position => _transform.position;
         private Transform _transform;
         
         private void Awake()

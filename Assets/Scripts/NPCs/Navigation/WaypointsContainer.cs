@@ -27,7 +27,7 @@ namespace NPCs.Navigation
             Waypoint best = _waypoints[0];
             foreach (Waypoint waypoint in _waypoints)
             {
-                float current = (transformPosition - waypoint.Transform.position).sqrMagnitude;
+                float current = (transformPosition - waypoint.Position).sqrMagnitude;
                 if (current  < closest)
                 {
                     closest = current;
@@ -86,7 +86,7 @@ namespace NPCs.Navigation
             (Waypoint waypoint, float angle)[] pairs = new (Waypoint waypoint, float number)[Waypoints.Count];
             for (int i = 0; i < pairs.Length; i++)
             {
-                float angle = Vector3.Angle(direction, Waypoints[i].Transform.position - center);
+                float angle = Vector3.Angle(direction, Waypoints[i].Position - center);
                 pairs[i] = new (Waypoints[i], angle);
             }
             int j = 0;
@@ -115,7 +115,7 @@ namespace NPCs.Navigation
             (Waypoint waypoint, float distanceSqr)[] pairs = new (Waypoint waypoint, float distanceSqr)[Waypoints.Count];
             for (int i = 0; i < pairs.Length; i++)
             {
-                float distanceSqr = (Waypoints[i].Transform.position - center).sqrMagnitude;
+                float distanceSqr = (Waypoints[i].Position - center).sqrMagnitude;
                 pairs[i] = new (Waypoints[i], distanceSqr);
             }
             int j = 0;
@@ -146,7 +146,7 @@ namespace NPCs.Navigation
             (Waypoint waypoint, float distanceSqr)[] pairs = new (Waypoint waypoint, float distanceSqr)[Waypoints.Count];
             for (int i = 0; i < pairs.Length; i++)
             {
-                NavMesh.CalculatePath(center, Waypoints[i].Transform.position, NavMesh.AllAreas, path);
+                NavMesh.CalculatePath(center, Waypoints[i].Position, NavMesh.AllAreas, path);
                 path.GetCornersNonAlloc(corners);
                 float distanceSqr = (corners[1] - center).sqrMagnitude;
                 pairs[i] = new (Waypoints[i], distanceSqr);
