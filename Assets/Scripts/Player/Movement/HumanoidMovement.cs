@@ -15,8 +15,9 @@ namespace Player.Movement
 
         public override void SetPlayerDestination()
         {
-            RaycastHit hit = ScreenRaycasting.GetScreenRaycastHit();
-            _host.WalkToPosition(hit.point);
+            (RaycastHit hit, bool success) hitInfo = ScreenRaycasting.GetScreenRaycastHit();
+            if(!hitInfo.success) return;
+            _host.WalkToPosition(hitInfo.hit.point);
         }
 
         public override void TurnOffNavMesh()

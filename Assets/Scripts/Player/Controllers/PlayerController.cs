@@ -49,6 +49,11 @@ namespace Player.Controllers
         
         protected GameObject InstantiateParasite(Transform hostTransform)
         {
+            Player player = FindObjectOfType<Player>();
+            if (player is not null)
+            {
+                Destroy(player.gameObject);
+            }
             return Instantiate(ServiceLocator.ParasitePrefab, hostTransform.position, hostTransform.rotation);
         }
         
