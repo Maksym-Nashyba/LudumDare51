@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Slime
+  m_Name: SlimeDarker
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _EMISSION
@@ -120,8 +120,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.735849, b: 0.15279305, a: 1}
-    - _Color: {r: 0, g: 0.735849, b: 0.15279302, a: 1}
-    - _EmissionColor: {r: 0.15289457, g: 4.867144, b: 0, a: 1}
+    - _BaseColor: {r: 0.13333334, g: 0.016252205, b: 0, a: 1}
+    - _Color: {r: 0.1333333, g: 0.016252205, b: 0, a: 1}
+    - _EmissionColor: {r: 0.110918716, g: 1.4974027, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
