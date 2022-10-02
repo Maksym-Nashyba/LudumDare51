@@ -18,5 +18,10 @@ namespace Player.Movement
             RaycastHit hit = ScreenRaycasting.GetScreenRaycastHit();
             _host.WalkToPosition(hit.point);
         }
+
+        public override void TurnOffNavMesh()
+        {
+            _host.enabled = false;
+        }
     }
 }

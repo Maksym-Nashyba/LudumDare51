@@ -19,6 +19,11 @@ namespace Player.Movement
             _agent.SetDestination(hit.point);
         }
 
+        public override void TurnOffNavMesh()
+        {
+            _agent.enabled = false;
+        }
+
         public override void WarpPlayerToPoint(Vector3 point)
         {
             _agent.Warp(point);

@@ -1,3 +1,4 @@
+using System.Collections;
 using Interactables;
 using Misc;
 using NPCs;
@@ -36,6 +37,11 @@ namespace Player.Controllers
                 LeaveHost();
             }
         }
+
+        protected float CheckDistanceTo(Transform pointTransform)
+        {
+            return Mathf.Abs((transform.position - pointTransform.position).magnitude);
+        }
         
         protected GameObject InstantiateParasite(Transform hostTransform)
         {
@@ -52,6 +58,8 @@ namespace Player.Controllers
             timer.gameObject.SetActive(true);
             timer.BeginCountdown(livingNPC.GetComponent<PlayerController>().LeaveHost);
         }
+
+        protected abstract IEnumerator PlayAnimation(LivingNPC livingNpc);
 
         protected void DestroyPlayer()
         {
