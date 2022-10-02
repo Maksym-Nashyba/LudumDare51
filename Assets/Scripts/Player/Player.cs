@@ -12,6 +12,7 @@ namespace Player
         private void OnEnable()
         {
             CheckPlayerController();
+            ServiceLocator.PlayerInstance = this;
         }
 
         private void Update()
