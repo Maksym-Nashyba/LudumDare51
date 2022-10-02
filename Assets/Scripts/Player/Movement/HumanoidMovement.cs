@@ -13,7 +13,7 @@ namespace Player.Movement
             _host = host;
         }
 
-        public override void MovePlayerToPoint()
+        public override void SetPlayerDestination()
         {
             RaycastHit hit = ScreenRaycasting.GetScreenRaycastHit();
             _host.WalkToPosition(hit.point);

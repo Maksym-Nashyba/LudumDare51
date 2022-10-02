@@ -16,7 +16,7 @@ namespace Player
 
         private void Update()
         {
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonUp(0))
             {
                 GameObject selectedGameObject = ScreenRaycasting.GetSelectedGameObject();
                 if (!selectedGameObject.TryGetComponent(out IInteractable interactable))
@@ -25,7 +25,7 @@ namespace Player
                 }
                 interactable.AcceptVisitor(_playerController);
             }
-            if(Input.GetMouseButtonDown(1))
+            else if(Input.GetMouseButtonUp(1))
             {
                 _playerController.MovePlayer();
             }

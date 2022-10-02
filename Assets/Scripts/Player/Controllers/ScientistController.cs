@@ -1,4 +1,5 @@
-﻿using NPCs;
+﻿using Interactables;
+using NPCs;
 using Player.Movement;
 
 namespace Player.Controllers
@@ -15,6 +16,11 @@ namespace Player.Controllers
         public override void ApplyPlayerMovement()
         {
             playerMovement = new HumanoidMovement(_host);
+        }
+        
+        public override void Interact(Door door)
+        {
+            door.Animator.SetTrigger("DoorTrigger");
         }
 
         public override void Interact(LivingNPC livingNpc)

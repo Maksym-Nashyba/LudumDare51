@@ -16,12 +16,17 @@ namespace Player.Controllers
         
         public void MovePlayer()
         {
-            playerMovement.MovePlayerToPoint();
+            playerMovement.SetPlayerDestination();
         }
 
         public virtual void Interact(Door door)
         {
-            door.Animator.SetTrigger("DoorTrigger");
+            
+        }
+        
+        public virtual void Interact(RatDoor ratDoor)
+        {
+            
         }
 
         public virtual void Interact(LivingNPC livingNpc)

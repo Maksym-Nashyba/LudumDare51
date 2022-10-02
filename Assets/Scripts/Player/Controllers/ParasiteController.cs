@@ -13,9 +13,10 @@ namespace Player.Controllers
             playerMovement = new ParasiteMovement(GetComponent<NavMeshAgent>());
         }
         
-        public override void Interact(Door door)
+        public override void Interact(RatDoor ratDoor)
         {
-            Debug.Log("NO");
+            Vector3 position = ratDoor.GoThrough(transform.position);
+            playerMovement.WarpPlayerToPoint(position);
         }
 
         public override void Interact(LivingNPC livingNpc)
@@ -24,6 +25,7 @@ namespace Player.Controllers
             ChangeComponentsOn(livingNpc);
             DestroyPlayer();
         }
+        
         protected override void LeaveHost()
         {
             

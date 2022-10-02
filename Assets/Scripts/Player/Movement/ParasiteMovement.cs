@@ -13,10 +13,15 @@ namespace Player.Movement
             _agent = agent;
         }
         
-        public override void MovePlayerToPoint()
+        public override void SetPlayerDestination()
         {
             RaycastHit hit = ScreenRaycasting.GetScreenRaycastHit();
             _agent.SetDestination(hit.point);
+        }
+
+        public override void WarpPlayerToPoint(Vector3 point)
+        {
+            _agent.Warp(point);
         }
     }
 }
