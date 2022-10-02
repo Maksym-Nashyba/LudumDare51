@@ -69,7 +69,9 @@ namespace NPCs
             Vector2[] uvs = new Vector2[vertices.Length];
             for (int i = 0; i < vertices.Length; i++)
             {
-                uvs[i] = new Vector2(vertices[i].x, vertices[i].z) / _detector.Radius / 4f * _detector.Radius + Vector2.one/2f;
+                float x = vertices[i].x.Remap(-_detector.Radius, _detector.Radius, 0f, 1f);
+                float y = vertices[i].y.Remap(-_detector.Radius, _detector.Radius, 0f, 1f);
+                uvs[i] = new Vector2(x, y);
             }
             _mesh.SetUVs(0, uvs);
             _mesh.MarkModified();
