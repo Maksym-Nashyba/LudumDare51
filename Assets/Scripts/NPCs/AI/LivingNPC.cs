@@ -27,6 +27,11 @@ namespace NPCs
             NavMeshAgent.SetDestination(target);
         }
 
+        public virtual void RunToPosition(Vector3 target)
+        {
+            NavMeshAgent.SetDestination(target);
+        }
+
         public virtual void Die(DeathCauses deathCause)
         {
             Destroy(gameObject);
@@ -43,18 +48,18 @@ namespace NPCs
             Shot,
             ParasiteLeaving
         }
-        
+
         protected override Context GetContext()
         {
             return new Context(WaypointsContainer, NavMeshAgent, Transform, this);
         }
-        
+
         protected class IdleState : State
         {
             private Context _context;
             private Waypoint _idlingWaypoint;
             private Vector3 _idlingPosition;
-            
+
             public override void OnStart(Context context)
             {
                 _context = context;
@@ -63,10 +68,12 @@ namespace NPCs
 
             public override IEnumerator Act()
             {
+                LivingNPC npc = (LivingNPC)_context.NPC;
                 while (true)
                 {
-                    _idlingPosition = Utils.GetPointInRadiusFlat(_idlingWaypoint.Transform.position, _idlingWaypoint.Radius);
-                    _context.NavMeshAgent.SetDestination(_idlingPosition);
+                    _idlingPosition =
+                        Utils.GetPointInRadiusFlat(_idlingWaypoint.Transform.position, _idlingWaypoint.Radius);
+                    npc.WalkToPosition(_idlingPosition);
                     yield return new WaitForSeconds(Random.Range(2f, 8f));
                 }
             }
@@ -75,11 +82,15 @@ namespace NPCs
             {
             }
         }
-        
+
         protected class RunForLifeState : State
         {
             private Transform _threatTransform;
-            
+            private Waypoint _target;
+            private Context _context;
+            private float _targetDistanceToTarget;
+            private LivingNPC _npc;
+
             public RunForLifeState(Transform threatTransform)
             {
                 _threatTransform = threatTransform;
@@ -87,20 +98,31 @@ namespace NPCs
 
             public override void OnStart(Context context)
             {
-                throw new System.NotImplementedException();
+                _context = context;
+                _target = ServiceLocator.WaypointsContainer
+                    .GetBestWaypointForEscape(context.Transform.position, _threatTransform.position);
+                _targetDistanceToTarget = _target.Radius / 2f;
+                _npc = (LivingNPC)context.NPC;
+                _npc.RunToPosition(_target.Transform.position);
             }
 
             public override IEnumerator Act()
             {
-                throw new System.NotImplementedException();
+                bool tooFar = true;
+                while (tooFar)
+                {
+                    float distanceSqr = (_target.Transform.position - _context.Transform.position).sqrMagnitude;
+                    tooFar = distanceSqr > _targetDistanceToTarget * _targetDistanceToTarget;
+                    yield return null;
+                }
+                _npc.ChangeState(new IdleState());
             }
 
             public override void OnEnd()
             {
-                throw new System.NotImplementedException();
             }
         }
-        
+
         public void AcceptVisitor(IVisitor visitor)
         {
             visitor.Interact(this);

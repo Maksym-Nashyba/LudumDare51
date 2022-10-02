@@ -23,7 +23,7 @@ public abstract class NPC : MonoBehaviour
         CurrentState.Act();
     }
 
-    protected void ChangeState(State nextState)
+    public void ChangeState(State nextState)
     {
         StopAllCoroutines();
         CurrentState?.OnEnd();
@@ -34,7 +34,7 @@ public abstract class NPC : MonoBehaviour
 
     protected abstract Context GetContext();
     
-    protected class Context
+    public class Context
     {
         public WaypointsContainer WaypointsContainer;
         public NavMeshAgent NavMeshAgent;
@@ -50,7 +50,7 @@ public abstract class NPC : MonoBehaviour
         }
     }
     
-    protected abstract class State
+    public abstract class State
     {
         public abstract void OnStart(Context context);
         

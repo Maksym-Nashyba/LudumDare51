@@ -37,6 +37,7 @@ namespace NPCs.AI
         private void ActivateAlarmBox(AlarmBox alarmBox)
         {
             alarmBox.Activate();
+            ChangeState(new IdleState());
         }
         
         private class RunForAlarmState : State
