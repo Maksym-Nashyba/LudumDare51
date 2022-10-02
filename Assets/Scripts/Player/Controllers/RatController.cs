@@ -1,7 +1,6 @@
 ﻿using Interactables;
 using NPCs;
 using Player.Movement;
-using UnityEngine;
 
 namespace Player.Controllers
 {
@@ -19,9 +18,9 @@ namespace Player.Controllers
             playerMovement = new RatMovement(_host);
         }
         
-        public override void Interact(Door door)
+        public override void Interact(RatDoor ratDoor)
         {
-            Debug.Log("NO");
+            ratDoor.GoThrough(transform.position);
         }
 
         public override void Interact(LivingNPC livingNpc)

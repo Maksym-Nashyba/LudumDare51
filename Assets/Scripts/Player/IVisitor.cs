@@ -7,6 +7,8 @@ namespace Player
     {
         public void Interact(Door door);
 
+        public void Interact(RatDoor ratDoor);
+
         public void Interact(LivingNPC livingNpc);
     }
 }
