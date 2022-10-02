@@ -10,10 +10,13 @@ namespace Player.Controllers
     public abstract class PlayerController : MonoBehaviour, IVisitor
     {
         protected PlayerMovement playerMovement;
+        protected bool isAlive = true;
 
         public abstract void ApplyPlayerMovement();
         
         protected abstract void LeaveHost();
+
+        //TODO protected abstract IEnumerator AnimateChangingHost(LivingNPC livingNpc);
         
         public void MovePlayer()
         {
@@ -35,6 +38,7 @@ namespace Player.Controllers
             if (livingNpc.gameObject == gameObject)
             {
                 LeaveHost();
+                isAlive = false;
             }
         }
 
@@ -56,10 +60,8 @@ namespace Player.Controllers
             livingNPC.gameObject.AddComponent<Player>();
             HostLifeTimer timer = livingNPC.gameObject.GetComponentInChildren<HostLifeTimer>(true);
             timer.gameObject.SetActive(true);
-            timer.BeginCountdown(livingNPC.GetComponent<PlayerController>().LeaveHost);
+            timer.BeginCountdown(() => livingNPC.GetComponent<PlayerController>().LeaveHost());
         }
-
-        protected abstract IEnumerator PlayAnimation(LivingNPC livingNpc);
 
         protected void DestroyPlayer()
         {

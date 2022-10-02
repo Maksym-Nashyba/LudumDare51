@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Interactables;
+﻿using Interactables;
 using NPCs;
 using Player.Movement;
 
@@ -27,19 +26,23 @@ namespace Player.Controllers
         public override void Interact(LivingNPC livingNpc)
         {
             base.Interact(livingNpc);
+            if (!isAlive) return;
+            LeaveHost(livingNpc);
             ChangeComponentsOn(livingNpc);
             DestroyPlayer();
-        }
-
-        protected override IEnumerator PlayAnimation(LivingNPC livingNpc)
-        {
-            throw new System.NotImplementedException();
         }
 
         protected override void LeaveHost()
         {
             _host.Die(LivingNPC.DeathCauses.ParasiteLeaving);
-            InstantiateParasite(_host.transform).AddComponent<Player>();
+            InstantiateParasite(_host.ParasiteTargetPoint).AddComponent<Player>();
+        }
+        
+        protected void LeaveHost(LivingNPC livingNpc)
+        {
+            _host.Die(LivingNPC.DeathCauses.ParasiteLeaving);
+            Player parasite = InstantiateParasite(_host.ParasiteTargetPoint).AddComponent<Player>();
+            parasite.GetComponent<PlayerController>().Interact(livingNpc);
         }
     }
 }

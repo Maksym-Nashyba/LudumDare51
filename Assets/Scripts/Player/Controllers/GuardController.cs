@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Interactables;
+﻿using Interactables;
 using NPCs;
 using Player.Movement;
 
@@ -27,15 +26,11 @@ namespace Player.Controllers
         public override void Interact(LivingNPC livingNpc)
         {
             base.Interact(livingNpc);
+            if (!isAlive) return;
             ChangeComponentsOn(livingNpc);
             DestroyPlayer();
         }
-
-        protected override IEnumerator PlayAnimation(LivingNPC livingNpc)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
         protected override void LeaveHost()
         {
             _host.Die(LivingNPC.DeathCauses.ParasiteLeaving);

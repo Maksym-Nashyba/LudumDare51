@@ -23,18 +23,18 @@ namespace Player.Controllers
         public override void Interact(LivingNPC livingNpc)
         {
             base.Interact(livingNpc);
-            StartCoroutine(PlayAnimation(livingNpc));
+            StartCoroutine(AnimateChangingHost(livingNpc));
             ChangeComponentsOn(livingNpc);
         }
 
-        protected override IEnumerator PlayAnimation(LivingNPC livingNpc)
+        protected IEnumerator AnimateChangingHost(LivingNPC livingNpc)
         {
             playerMovement.TurnOffNavMesh();
             float distance = CheckDistanceTo(livingNpc.transform);
             while(distance > 1.5f)
             {
-                yield return new WaitForSeconds(Time.deltaTime);
-                transform.position = Vector3.Lerp(transform.position, livingNpc.transform.position, 0.15f);
+                yield return new WaitForSeconds(Time.deltaTime * 5);
+                transform.position = Vector3.Lerp(transform.position, livingNpc.transform.position, 0.1f);
                 distance = CheckDistanceTo(livingNpc.transform);
             }
             while(distance >= 0.15f)

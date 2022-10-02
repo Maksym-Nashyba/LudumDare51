@@ -9,7 +9,7 @@ namespace Player
     {
         private PlayerController _playerController;
 
-        private void Start()
+        private void OnEnable()
         {
             CheckPlayerController();
         }
