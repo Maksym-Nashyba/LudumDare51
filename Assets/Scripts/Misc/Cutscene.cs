@@ -40,6 +40,7 @@ namespace Misc
             }
             _mover.LerpCameraTo(tempTransform);
             yield return new WaitUntil(() => _mover.DistanceToCurrentTarget() < 0.5f);
+            _mover.Stop();
             Destroy(temp);
             callback?.Invoke();
         }
