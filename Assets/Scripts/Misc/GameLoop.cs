@@ -85,7 +85,7 @@ namespace Misc
                 yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
             }
             ServiceLocator.UI.FadeToBlack();
-            yield return new WaitForSecondsRealtime(1.5f);
+            yield return new WaitForSecondsRealtime(3f);
             Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
