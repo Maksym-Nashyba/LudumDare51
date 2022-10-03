@@ -15,9 +15,15 @@ namespace OperatorWork
 
         private void Update()
         {
-            if (_currentTarget is null) return;
-            _cameraTransform.position =
-                Vector3.Lerp(_cameraTransform.position, _currentTarget.position, 2f * Time.deltaTime);
+            if (_currentTarget is not null)
+            {
+                _cameraTransform.position =
+                    Vector3.Lerp(_cameraTransform.position, _currentTarget.position, 2f * Time.deltaTime);   
+            }
+            else
+            {
+                
+            }
         }
 
         public void Stop()
