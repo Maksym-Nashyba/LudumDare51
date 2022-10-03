@@ -1,16 +1,19 @@
 ﻿using Misc;
 using NPCs;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Player.Movement
 {
     public sealed class RatMovement: PlayerMovement
     {
         private readonly LivingNPC _host;
+        private readonly NavMeshAgent _agent;
 
-        public RatMovement(LivingNPC host)
+        public RatMovement(LivingNPC host, NavMeshAgent agent)
         {
             _host = host;
+            _agent = agent;
         }
 
         public override void SetPlayerDestination()
@@ -23,6 +26,11 @@ namespace Player.Movement
         public override void TurnOffNavMesh()
         {
             _host.enabled = false;
+        }
+        
+        public override void WarpPlayerToPoint(Vector3 point)
+        {
+            _agent.Warp(point);
         }
     }
 }

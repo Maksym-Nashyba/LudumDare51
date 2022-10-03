@@ -1,3 +1,4 @@
+using System;
 using Interactables;
 using Misc;
 using NPCs;
@@ -8,8 +9,14 @@ namespace Player.Controllers
 {
     public abstract class PlayerController : MonoBehaviour, IVisitor
     {
+        protected Transform Transform;
         protected PlayerMovement PlayerMovement;
         protected bool IsAlive = true;
+
+        protected virtual void Awake()
+        {
+            Transform = GetComponent<Transform>();
+        }
 
         public abstract void ApplyPlayerMovement();
         
@@ -19,7 +26,7 @@ namespace Player.Controllers
         {
         }
         
-        public void MovePlayer()
+        public virtual void MovePlayer()
         {
             PlayerMovement.SetPlayerDestination();
         }

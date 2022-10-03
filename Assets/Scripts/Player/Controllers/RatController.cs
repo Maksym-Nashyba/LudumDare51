@@ -1,36 +1,62 @@
-﻿using Interactables;
+﻿using System.Collections;
+using Interactables;
 using Misc;
 using NPCs;
 using Player.Movement;
+using UnityEngine;
+using UnityEngine.AI;
 
 namespace Player.Controllers
 {
     public sealed class RatController: PlayerController
     {
+        private float _minDistanceToRatDoor = 0.25f;
         private LivingNPC _host;
-        
-        private void Awake()
+        private NavMeshAgent _navMeshAgent;
+
+        protected override void Awake()
         {
+            base.Awake();
             _host = GetComponent<LivingNPC>();
+            _navMeshAgent = GetComponent<NavMeshAgent>();
         }
-        
+
         public override void ApplyPlayerMovement()
         {
-            PlayerMovement = new RatMovement(_host);
+            PlayerMovement = new RatMovement(_host, _navMeshAgent);
         }
-        
+
+        public override void MovePlayer()
+        {
+            StopApproachingDoor();
+            base.MovePlayer();
+        }
+
         public override void GetShot()
         {
             enabled = false;
             _host.Die(LivingNPC.DeathCauses.Shot);
         }
+
+        private void StopApproachingDoor()
+        {
+            StopCoroutine(nameof(ApproachAndEnterRatDoor));
+        }
         
         public override void Interact(RatDoor ratDoor)
         {
-            if (!Raycasting.CheckObstacleBetween(transform.position, ratDoor.gameObject)) return;
-            ratDoor.GoThrough(transform.position);
+            StartCoroutine(nameof(ApproachAndEnterRatDoor), ratDoor);
         }
 
+        private IEnumerator ApproachAndEnterRatDoor(RatDoor door)
+        {
+            Vector3 doorPosition = door.transform.position;
+            _navMeshAgent.SetDestination(doorPosition);
+            yield return new WaitUntil(() => (doorPosition - Transform.position).sqrMagnitude < _minDistanceToRatDoor * _minDistanceToRatDoor);
+            Vector3 position = door.FindExitPosition(transform.position);
+            PlayerMovement.WarpPlayerToPoint(position);
+        }
+        
         public override void Interact(LivingNPC livingNpc)
         {
             base.Interact(livingNpc);

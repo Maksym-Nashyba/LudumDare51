@@ -13,14 +13,12 @@ namespace Interactables
             visitor.Interact(this);
         }
 
-        public Vector3 GoThrough(Vector3 playerPosition)
+        public Vector3 FindExitPosition(Vector3 entryPosition)
         {
-            Vector3 localPlayerPosition = transform.InverseTransformPoint(playerPosition);
-            if (localPlayerPosition.z < transform.localPosition.z)
-            {
-                return _frontSide.position;
-            }
-            return _backSide.position;
+            return (_frontSide.position - entryPosition).sqrMagnitude <
+                   (_backSide.position - entryPosition).sqrMagnitude
+                ? _backSide.position
+                : _frontSide.position;
         }
     }
 }

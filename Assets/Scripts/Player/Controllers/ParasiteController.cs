@@ -22,9 +22,6 @@ namespace Player.Controllers
 
         public override void Interact(RatDoor ratDoor)
         {
-            if (!Raycasting.CheckObstacleBetween(transform.position, ratDoor.gameObject)) return;
-            Vector3 position = ratDoor.GoThrough(transform.position);
-            PlayerMovement.WarpPlayerToPoint(position);
         }
 
         public override void Interact(LivingNPC livingNpc)

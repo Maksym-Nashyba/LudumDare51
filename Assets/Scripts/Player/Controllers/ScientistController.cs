@@ -9,11 +9,12 @@ namespace Player.Controllers
     {
         private LivingNPC _host;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _host = GetComponent<LivingNPC>();
         }
-        
+
         public override void ApplyPlayerMovement()
         {
             PlayerMovement = new HumanoidMovement(_host);
