@@ -9,6 +9,7 @@ namespace UserInterface
         [SerializeField] private Button _button;
         [SerializeField] private Image _black;
         [SerializeField] private GameObject _alarmPanel;
+        [SerializeField] private GameObject _victoryPanel;
         
         public void FadeToBlack()
         {
@@ -65,6 +66,11 @@ namespace UserInterface
         public void DisplayAlarmMessage()
         {
             _alarmPanel.SetActive(true);
+        }
+
+        public void DisplayVictoryMessage()
+        {
+            _victoryPanel.SetActive(true);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Misc
         {
             _alarmBox.AlarmActivated.AddListener(ActivateAlarm);
             _lever.Pulled.AddListener(ShowLeverCutscene);
+            ServiceLocator.VictoryTrigger.Activated.AddListener(OnVictory);
         }
 
         private void Start()
@@ -57,6 +58,19 @@ namespace Misc
             _isPlayerControlled = false;
             
             StartCoroutine(nameof(RestartGame));
+        }
+
+        private void OnVictory()
+        {
+            _isPlayerControlled = false;
+            StartCoroutine(DisplayVictory());
+        }
+
+        private IEnumerator DisplayVictory()
+        {
+            ServiceLocator.UI.FadeToBlack();
+            yield return new WaitForSecondsRealtime(1f);
+            ServiceLocator.UI.DisplayVictoryMessage();
         }
 
         private IEnumerator RestartGame()

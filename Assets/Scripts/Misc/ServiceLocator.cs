@@ -1,4 +1,5 @@
-﻿using NPCs;
+﻿using Interactables;
+using NPCs;
 using NPCs.Navigation;
 using UnityEngine;
 using UserInterface;
@@ -16,6 +17,7 @@ namespace Misc
         [SerializeField] private GameLoop _gameLoop;
         [SerializeField] private UI _ui;
         [SerializeField] private Siren _siren;
+        [SerializeField] private VictoryTrigger _victoryTrigger;
         private bool _isPlayerControlled;
         private Player.Player _playerInstance;
 
@@ -32,6 +34,8 @@ namespace Misc
         public static Siren Siren => Instance._siren;
         
         public static UI UI => Instance._ui;
+
+        public static VictoryTrigger VictoryTrigger => Instance._victoryTrigger;
         
         public static bool IsPlayerControlled => Instance._isPlayerControlled;
         
