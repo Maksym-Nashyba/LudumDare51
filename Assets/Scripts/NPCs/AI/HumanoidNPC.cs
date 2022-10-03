@@ -8,10 +8,29 @@ namespace NPCs.AI
     public class HumanoidNPC : LivingNPC
     {
         private RaycastHit[] _hits = new RaycastHit[4];
-        
+        [SerializeField] private GameObject _panicMark;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Detector.Detected += Panic;
+        }
+
         protected void Update()
         {
             TryDetectDoors();
+        }
+
+        private void Panic(SuspiciousObject suspiciousObject)
+        {
+            StartCoroutine(nameof(PanicCoroutine));
+        }
+
+        private IEnumerator PanicCoroutine()
+        {
+            _panicMark.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            _panicMark.SetActive(false);
         }
 
         private void OnCollidedWithDoor(Door door)
@@ -43,6 +62,11 @@ namespace NPCs.AI
                     OnCollidedWithDoor(door);
                 }
             }
+        }
+        
+        private void OnDestroy()
+        {
+            Detector.Detected -= Panic;
         }
         
         protected class WalkThroughDoorState : State
