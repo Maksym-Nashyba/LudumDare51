@@ -224,6 +224,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GFXAnimator: {fileID: 8118320623105952166}
+  _lightheadedPrefab: {fileID: 8026811526020714395, guid: 345df25b6fd55c84091bc954c5d469b6,
+    type: 3}
+  _helmetPrefab: {fileID: 4950155199884509721, guid: 6f08ce02eed8bb54188c2bc50dede254,
+    type: 3}
+  _riflePrefab: {fileID: 8534013112975001116, guid: 82dbd84f249b3cb4eb3805cae284dbe4,
+    type: 3}
 --- !u!195 &587575056779275629
 NavMeshAgent:
   m_ObjectHideFlags: 0
