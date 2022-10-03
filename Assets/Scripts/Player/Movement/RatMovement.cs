@@ -23,6 +23,11 @@ namespace Player.Movement
             _host.WalkToPosition(hitInfo.hit.point);
         }
 
+        public override void SetDestinationTo(Vector3 position)
+        {
+            _agent.SetDestination(position);
+        }
+
         public override void TurnOffNavMesh()
         {
             _host.enabled = false;

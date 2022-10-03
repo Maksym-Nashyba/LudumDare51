@@ -38,8 +38,6 @@ namespace Player.Controllers
             if (!IsAlive) return;
             if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
             LeaveHost(livingNpc);
-            ChangeComponentsOn(livingNpc);
-            DestroyPlayer();
         }
 
         protected override void LeaveHost()

@@ -10,6 +10,8 @@ namespace Player.Controllers
 {
     public class ParasiteController : PlayerController
     {
+        private float _minDistanceToPrey = 2f;
+        
         public override void ApplyPlayerMovement()
         {
             PlayerMovement = new ParasiteMovement(GetComponent<NavMeshAgent>());
@@ -29,15 +31,19 @@ namespace Player.Controllers
         {
             base.Interact(livingNpc);
             if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
-            StartCoroutine(AnimateChangingHost(livingNpc));
-            ChangeComponentsOn(livingNpc);
+            StartCoroutine(nameof(AnimateChangingHost), livingNpc);
         }
 
         protected IEnumerator AnimateChangingHost(LivingNPC livingNpc)
         {
+            Vector3 preyPosition = livingNpc.transform.position;
+            PlayerMovement.SetDestinationTo(preyPosition);
+            yield return new WaitUntil(() => (preyPosition - Transform.position).sqrMagnitude < _minDistanceToPrey * _minDistanceToPrey);
+            
+            if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) yield break;
             PlayerMovement.TurnOffNavMesh();
             float distance = CheckDistanceTo(livingNpc.transform);
-            while(distance > 1.5f)
+            while(distance > 1f)
             {
                 yield return new WaitForSeconds(Time.deltaTime * 5);
                 transform.position = Vector3.Lerp(transform.position, livingNpc.transform.position, 0.1f);
@@ -49,6 +55,7 @@ namespace Player.Controllers
                 transform.position = Vector3.Lerp(transform.position, livingNpc.ParasiteTargetPoint.position, 0.12f);
                 distance = CheckDistanceTo(livingNpc.ParasiteTargetPoint);
             }
+            ChangeComponentsOn(livingNpc);
             DestroyPlayer();
         }
 

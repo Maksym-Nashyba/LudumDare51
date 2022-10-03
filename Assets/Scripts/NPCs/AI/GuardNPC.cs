@@ -45,7 +45,6 @@ namespace NPCs.AI
             {
                 _gunPoint.DrawShotsTo(transform);
                 controller.GetShot();
-                Destroy(transform.gameObject);
                 return;
             }
             if (!transform.TryGetComponent(out LivingNPC living)) return;

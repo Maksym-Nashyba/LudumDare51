@@ -20,6 +20,11 @@ namespace Player.Movement
             _agent.SetDestination(hitInfo.hit.point);
         }
 
+        public override void SetDestinationTo(Vector3 position)
+        {
+            _agent.SetDestination(position);
+        }
+
         public override void TurnOffNavMesh()
         {
             _agent.enabled = false;

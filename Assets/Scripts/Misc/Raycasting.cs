@@ -37,6 +37,7 @@ namespace Misc
         public static (CameraObstruction cameraObstruction, bool success) CheckObstacleBetweenCameraAndPlayer()
         {
             Vector3 cameraPosition = ServiceLocator.Camera.transform.position;
+            if(ServiceLocator.PlayerInstance is null) return new(null, false);
             Ray ray = new Ray(cameraPosition,
                 ServiceLocator.PlayerInstance.transform.position - cameraPosition);
             Debug.DrawRay(ray.origin, ray.direction, Color.red);

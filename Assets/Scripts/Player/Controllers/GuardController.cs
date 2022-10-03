@@ -36,6 +36,7 @@ namespace Player.Controllers
         public override void Interact(LivingNPC livingNpc)
         {
             ((GuardNPC)_host).ShootAt(livingNpc.transform);
+            LeaveHost();
         }
         
         protected override void LeaveHost()
