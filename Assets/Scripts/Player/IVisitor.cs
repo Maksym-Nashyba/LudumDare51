@@ -10,5 +10,7 @@ namespace Player
         public void Interact(RatDoor ratDoor);
 
         public void Interact(LivingNPC livingNpc);
+        
+        public void Interact(GateOpeningLever gateOpeningLever);
     }
 }

@@ -50,6 +50,11 @@ namespace Player.Controllers
             }
         }
 
+        public virtual void Interact(GateOpeningLever gateOpeningLever)
+        {
+            
+        }
+
         protected float CheckDistanceTo(Transform pointTransform)
         {
             return Mathf.Abs((transform.position - pointTransform.position).magnitude);

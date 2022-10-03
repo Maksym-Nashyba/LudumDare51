@@ -10,8 +10,8 @@ namespace NPCs
     public abstract class LivingNPC : NPC, IInteractable
     {
         [SerializeField] public Transform ParasiteTargetPoint;
+        public NPCAnimations Animations;
         protected SuspiciousObjectsDetector Detector;
-        protected NPCAnimations Animations;
         
         protected override void Awake()
         {

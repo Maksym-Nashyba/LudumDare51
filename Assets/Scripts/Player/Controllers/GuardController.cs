@@ -38,7 +38,14 @@ namespace Player.Controllers
             ((GuardNPC)_host).ShootAt(livingNpc.transform);
             LeaveHost();
         }
-        
+
+        public override void Interact(GateOpeningLever gateOpeningLever)
+        {
+            if(gateOpeningLever.AlreadyPulled)return;
+            gateOpeningLever.Pull();
+            _host.Animations.PlayInteractAnimation(gateOpeningLever.transform.position);
+        }
+
         protected override void LeaveHost()
         {
             _host.Die(LivingNPC.DeathCauses.ParasiteLeaving);
