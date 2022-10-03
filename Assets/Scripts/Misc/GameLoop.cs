@@ -69,7 +69,11 @@ namespace Misc
         private IEnumerator DisplayVictory()
         {
             ServiceLocator.UI.FadeToBlack();
-            yield return new WaitForSecondsRealtime(1f);
+            while (Time.timeScale > 0.2f)
+            {
+                Time.timeScale -= Time.unscaledDeltaTime;
+                yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
+            }
             ServiceLocator.UI.DisplayVictoryMessage();
         }
 

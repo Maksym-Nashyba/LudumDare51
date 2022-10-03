@@ -35,7 +35,7 @@ namespace UserInterface
         private IEnumerator ToBlack()
         {
             _black.enabled = true;
-            while (_black.color.a < 0.95f)
+            while (_black.color.a < 0.99f)
             {
                 _black.color += new Color(0f, 0f, 0f, Time.deltaTime);
                 yield return new WaitForSeconds(Time.deltaTime);
