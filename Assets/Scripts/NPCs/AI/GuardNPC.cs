@@ -41,13 +41,14 @@ namespace NPCs.AI
 
         public void ShootAt(Transform transform)
         {
-            _gunPoint.DrawShotsTo(transform);
-            if (transform.TryGetComponent(out PlayerController controller))
+            if (transform.TryGetComponent(out PlayerController controller) && controller.enabled)
             {
+                _gunPoint.DrawShotsTo(transform);
                 controller.GetShot();
                 return;
             }
             if (!transform.TryGetComponent(out LivingNPC living)) return;
+            _gunPoint.DrawShotsTo(living.ParasiteTargetPoint);
             living.Die(DeathCauses.Shot);
         }
 

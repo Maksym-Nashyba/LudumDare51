@@ -21,7 +21,7 @@ namespace NPCs
             while (shot < shots)
             {
                 Shot?.Invoke();
-                Vector3 shotsTarget = target.position + (Vector3)Vector2.up.RotatedBy(Random.Range(0f, 300f)) * 0.01f;
+                Vector3 shotsTarget = target.position + (Vector3)Vector2.up.RotatedBy(Random.Range(0f, 300f)) * 0.15f;
                 ShotTracer tracer = Instantiate(_tracerPrefab).GetComponent<ShotTracer>();
                 tracer.DrawAt(_barrelEnd.position, shotsTarget, 0.2f);
                 yield return new WaitForSeconds(Random.Range(medianInterval/2f, medianInterval + medianInterval/2f));

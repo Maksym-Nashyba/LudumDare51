@@ -45,6 +45,7 @@ namespace Player.Controllers
         
         public override void Interact(RatDoor ratDoor)
         {
+            StopApproachingDoor();
             StartCoroutine(nameof(ApproachAndEnterRatDoor), ratDoor);
         }
 
