@@ -113,12 +113,13 @@ namespace NPCs.AI
             public override void Start(Context context)
             {
                 _npc = (GuardNPC)context.NPC;
-                _npc.StopMoving();
-                _npc.ShootAt(Target);
             }
 
             public override IEnumerator Act()
             {
+                _npc.StopMoving();
+                yield return new WaitForSeconds(0.7f);
+                _npc.ShootAt(Target);
                 yield return new WaitForSeconds(2f);
                 _npc.ChangeState(new PatrollingState(_npc._patrolPoints));
             }

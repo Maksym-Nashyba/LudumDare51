@@ -15,7 +15,7 @@ namespace Interactables
 
         public Vector3 FindExitPosition(Vector3 entryPosition)
         {
-            return (_frontSide.position - entryPosition).sqrMagnitude <
+            return (_frontSide.position - entryPosition).sqrMagnitude >
                    (_backSide.position - entryPosition).sqrMagnitude
                 ? _backSide.position
                 : _frontSide.position;
