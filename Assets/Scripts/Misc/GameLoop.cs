@@ -26,7 +26,6 @@ namespace Misc
         private void Start()
         {
             ShowEntryCutscene();
-            
         }
 
         private void ShowEntryCutscene()
