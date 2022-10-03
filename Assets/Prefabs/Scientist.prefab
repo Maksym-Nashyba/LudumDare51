@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GFXAnimator: {fileID: 3835299056429596560}
+  GFXObject: {fileID: 4253737094514525799}
   _lightheadedPrefab: {fileID: 8026811526020714395, guid: f4a84990680d20e4fb794e5ebd42783d,
     type: 3}
   _glassesPrefab: {fileID: 8026811526020714395, guid: b34e4e8318df7ed4db83e4885c524e43,
@@ -482,6 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5279731672614161029}
   - component: {fileID: 3835299056429596560}
+  - component: {fileID: 5439043051366034762}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -527,6 +529,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &5439043051366034762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4253737094514525799}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.053016767, y: 0.9227536, z: 0.23047419}
+  m_Center: {x: 0, y: 0.5023229, z: 0}
 --- !u!1001 &8850788276898147545
 PrefabInstance:
   m_ObjectHideFlags: 0

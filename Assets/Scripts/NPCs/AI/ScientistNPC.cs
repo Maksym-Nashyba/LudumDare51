@@ -35,6 +35,8 @@ namespace NPCs.AI
             }
         }
 
+        
+        
         private void ActivateAlarmBox(AlarmBox alarmBox)
         {
             alarmBox.Activate();

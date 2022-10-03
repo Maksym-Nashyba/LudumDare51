@@ -28,6 +28,13 @@ namespace NPCs
                 Instantiate(_glassesPrefab, position + Vector3.one, Quaternion.identity)
                     .GetComponent<Rigidbody>()
                     .AddForce(Vector3.one * 0.2f + Vector3.right * Random.Range(0f, 0.1f), ForceMode.Impulse);
+            }else if (cause == LivingNPC.DeathCauses.Shot)
+            {
+                GFXAnimator.enabled = false;
+                GFXObject.transform.SetParent(null);
+                GFXObject.AddComponent<Rigidbody>().AddTorque(Random.Range(0f,10f), Random.Range(0f,10f), Random.Range(0f,10f), ForceMode.Impulse);
+                GFXObject.GetComponentInChildren<BoxCollider>(true).enabled = true;
+                GFXObject.AddComponent<Debris>();
             }
         }
 

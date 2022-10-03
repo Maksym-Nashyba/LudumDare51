@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GFXAnimator: {fileID: 8118320623105952166}
+  GFXObject: {fileID: 2382693446716168546}
   _lightheadedPrefab: {fileID: 8026811526020714395, guid: 345df25b6fd55c84091bc954c5d469b6,
     type: 3}
   _helmetPrefab: {fileID: 4950155199884509721, guid: 6f08ce02eed8bb54188c2bc50dede254,
@@ -487,6 +488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7531971855810545504}
   - component: {fileID: 8118320623105952166}
+  - component: {fileID: 714370736874942478}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -531,6 +533,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &714370736874942478
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2382693446716168546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.09406516, y: 1.0071069, z: 0.24130633}
+  m_Center: {x: -0.013979066, y: 0.55171543, z: 6.937084e-11}
 --- !u!1 &3355120861050578908
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +648,8 @@ MonoBehaviour:
       m_Calls: []
   _barrelEnd: {fileID: 1730369052847658349}
   _tracerPrefab: {fileID: 7926880570219595351, guid: 54b7199201a62fc479f53292755ee9ca,
+    type: 3}
+  _ketchupStain: {fileID: 634293683563940732, guid: 3892fc289fe29c3469ad70acb79701a7,
     type: 3}
 --- !u!1 &9154169340666117274
 GameObject:

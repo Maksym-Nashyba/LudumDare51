@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GFXAnimator: {fileID: 96902406621552733}
+  GFXObject: {fileID: 1408133213652680499}
 --- !u!136 &587575056779275635
 CapsuleCollider:
   m_ObjectHideFlags: 0

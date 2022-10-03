@@ -43,6 +43,7 @@ namespace NPCs
         public virtual void Die(DeathCauses deathCause)
         {
             Animations.PlayDeath(deathCause);
+            gameObject.SetActive(false);
         }
 
         public void GetInfected()
