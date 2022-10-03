@@ -40,8 +40,7 @@ namespace Player.Controllers
         public override void Interact(GateOpeningLever gateOpeningLever)
         {
             if(gateOpeningLever.AlreadyPulled)return;
-            gateOpeningLever.Pull();
-            _host.Animations.PlayInteractAnimation(gateOpeningLever.transform.position);
+            StartCoroutine(nameof(InteractWithLever), (gateOpeningLever, _host));
         }
         
         protected override void LeaveHost()

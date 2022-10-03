@@ -48,12 +48,12 @@ namespace Player.Controllers
             StartCoroutine(nameof(ApproachAndEnterRatDoor), ratDoor);
         }
 
-        private IEnumerator ApproachAndEnterRatDoor(RatDoor door)
+        private IEnumerator ApproachAndEnterRatDoor(RatDoor ratDoor)
         {
-            Vector3 doorPosition = door.transform.position + (transform.position - door.transform.position).normalized * 0.1f;
+            Vector3 doorPosition = ratDoor.transform.position + (transform.position - ratDoor.transform.position).normalized * 0.1f;
             _navMeshAgent.SetDestination(doorPosition);
             yield return new WaitUntil(() => (doorPosition - Transform.position).sqrMagnitude < _minDistanceToRatDoor * _minDistanceToRatDoor);
-            Vector3 position = door.FindExitPosition(transform.position);
+            Vector3 position = ratDoor.FindExitPosition(transform.position);
             PlayerMovement.WarpPlayerToPoint(position);
         }
         

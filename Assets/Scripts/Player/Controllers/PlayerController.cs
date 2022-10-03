@@ -12,7 +12,7 @@ namespace Player.Controllers
         protected Transform Transform;
         protected PlayerMovement PlayerMovement;
         protected bool IsAlive = true;
-        private readonly float _minDistanceToDoor = 1.25f;
+        private readonly float _minDistanceToInteractable = 1.25f;
 
         protected virtual void Awake()
         {
@@ -56,11 +56,22 @@ namespace Player.Controllers
             
         }
         
+        protected IEnumerator InteractWithLever((GateOpeningLever gateOpeningLever, LivingNPC host) leverInfo)
+        {
+            PlayerMovement.SetDestinationTo(leverInfo.gateOpeningLever.transform.position);
+            yield return new WaitUntil(() => (leverInfo.gateOpeningLever.transform.position - Transform.position).sqrMagnitude 
+                                             < _minDistanceToInteractable * _minDistanceToInteractable);
+            
+            if (!Raycasting.CheckObstacleBetween(transform.position, leverInfo.gateOpeningLever.gameObject)) yield break;
+            leverInfo.gateOpeningLever.Pull();
+            leverInfo.host.Animations.PlayInteractAnimation(leverInfo.gateOpeningLever.transform.position);
+        }
+        
         protected IEnumerator WalkToDoor(Door door)
         {
             PlayerMovement.SetDestinationTo(door.transform.position);
             yield return new WaitUntil(() => (door.transform.position - Transform.position).sqrMagnitude 
-                                             < _minDistanceToDoor * _minDistanceToDoor);
+                                             < _minDistanceToInteractable * _minDistanceToInteractable);
             
             if (!Raycasting.CheckObstacleBetween(transform.position, door.gameObject)) yield break;
             door.OpenDoor();
