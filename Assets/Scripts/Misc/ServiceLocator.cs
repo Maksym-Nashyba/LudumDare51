@@ -1,6 +1,7 @@
 ﻿using NPCs;
 using NPCs.Navigation;
 using UnityEngine;
+using UserInterface;
 
 namespace Misc
 {
@@ -13,6 +14,7 @@ namespace Misc
         [SerializeField] private GameObject _parasitePrefab;
         [SerializeField] private Particles _particles;
         [SerializeField] private GameLoop _gameLoop;
+        [SerializeField] private UI _ui;
         private bool _isPlayerControlled;
         private Player.Player _playerInstance;
 
@@ -24,6 +26,8 @@ namespace Misc
         
 
         public static Particles Particles => Instance._particles;
+        
+        public static UI UI => Instance._ui;
         
         public static bool IsPlayerControlled => Instance._isPlayerControlled;
         
