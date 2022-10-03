@@ -15,6 +15,7 @@ namespace Misc
         [SerializeField] private Particles _particles;
         [SerializeField] private GameLoop _gameLoop;
         [SerializeField] private UI _ui;
+        [SerializeField] private Siren _siren;
         private bool _isPlayerControlled;
         private Player.Player _playerInstance;
 
@@ -23,9 +24,9 @@ namespace Misc
         public static WaypointsContainer WaypointsContainer => Instance._waypointsContainer;
         
         public static GameObject ParasitePrefab => Instance._parasitePrefab;
-        
 
         public static Particles Particles => Instance._particles;
+        public static Siren Siren => Instance._siren;
         
         public static UI UI => Instance._ui;
         

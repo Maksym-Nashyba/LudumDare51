@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using Interactables;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UserInterface;
 
 namespace Misc
 {
@@ -44,12 +46,20 @@ namespace Misc
         
         public void PlayerDied()
         {
-            
+            _isPlayerControlled = false;
+            StartCoroutine(nameof(RestartGame));
         }
 
         private IEnumerator RestartGame()
         {
-            yield break;
+            while (Time.timeScale > 0.2f)
+            {
+                Time.timeScale -= Time.unscaledDeltaTime;
+                yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
+            }
+            ServiceLocator.UI.FadeToBlack();
+            yield return new WaitForSecondsRealtime(1.5f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
