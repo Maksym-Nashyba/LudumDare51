@@ -8,22 +8,20 @@ namespace Player.Controllers
 {
     public abstract class PlayerController : MonoBehaviour, IVisitor
     {
-        protected PlayerMovement playerMovement;
-        protected bool isAlive = true;
+        protected PlayerMovement PlayerMovement;
+        protected bool IsAlive = true;
 
         public abstract void ApplyPlayerMovement();
         
         protected abstract void LeaveHost();
 
-        //TODO protected abstract IEnumerator AnimateChangingHost(LivingNPC livingNpc);
-        
         public virtual void GetShot()
         {
         }
         
         public void MovePlayer()
         {
-            playerMovement.SetPlayerDestination();
+            PlayerMovement.SetPlayerDestination();
         }
 
         public virtual void Interact(Door door)
@@ -41,7 +39,7 @@ namespace Player.Controllers
             if (livingNpc.gameObject == gameObject)
             {
                 LeaveHost();
-                isAlive = false;
+                IsAlive = false;
             }
         }
 
@@ -62,7 +60,7 @@ namespace Player.Controllers
         
         protected void ChangeComponentsOn(LivingNPC livingNPC)
         {
-            playerMovement = new HumanoidMovement(livingNPC);
+            PlayerMovement = new HumanoidMovement(livingNPC);
             livingNPC.GetInfected();
             livingNPC.gameObject.GetComponent<NPC>().enabled = false;
             livingNPC.gameObject.AddComponent<Player>();

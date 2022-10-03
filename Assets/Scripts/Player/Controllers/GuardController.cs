@@ -17,7 +17,7 @@ namespace Player.Controllers
         
         public override void ApplyPlayerMovement() 
         {
-            playerMovement = new HumanoidMovement(_host);
+            PlayerMovement = new HumanoidMovement(_host);
         }
 
         public override void GetShot()

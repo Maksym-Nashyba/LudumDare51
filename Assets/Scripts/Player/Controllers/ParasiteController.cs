@@ -12,7 +12,7 @@ namespace Player.Controllers
     {
         public override void ApplyPlayerMovement()
         {
-            playerMovement = new ParasiteMovement(GetComponent<NavMeshAgent>());
+            PlayerMovement = new ParasiteMovement(GetComponent<NavMeshAgent>());
         }
 
         public override void GetShot()
@@ -24,7 +24,7 @@ namespace Player.Controllers
         {
             if (!Raycasting.CheckObstacleBetween(transform.position, ratDoor.gameObject)) return;
             Vector3 position = ratDoor.GoThrough(transform.position);
-            playerMovement.WarpPlayerToPoint(position);
+            PlayerMovement.WarpPlayerToPoint(position);
         }
 
         public override void Interact(LivingNPC livingNpc)
@@ -37,7 +37,7 @@ namespace Player.Controllers
 
         protected IEnumerator AnimateChangingHost(LivingNPC livingNpc)
         {
-            playerMovement.TurnOffNavMesh();
+            PlayerMovement.TurnOffNavMesh();
             float distance = CheckDistanceTo(livingNpc.transform);
             while(distance > 1.5f)
             {

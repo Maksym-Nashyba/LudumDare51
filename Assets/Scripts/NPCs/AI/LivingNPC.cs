@@ -11,11 +11,13 @@ namespace NPCs
     {
         [SerializeField] public Transform ParasiteTargetPoint;
         protected SuspiciousObjectsDetector Detector;
-
+        protected NPCAnimations Animations;
+        
         protected override void Awake()
         {
             base.Awake();
             Detector = GetComponentInChildren<SuspiciousObjectsDetector>();
+            Animations = GetComponent<NPCAnimations>();
         }
 
         protected virtual void Start()
@@ -40,7 +42,7 @@ namespace NPCs
         
         public virtual void Die(DeathCauses deathCause)
         {
-            Destroy(gameObject);
+            Animations.PlayDeath(deathCause);
         }
 
         public void GetInfected()
@@ -48,6 +50,7 @@ namespace NPCs
             StopAllCoroutines();
             Detector.Disable();
             StopMoving();
+            Animations.PlayStartInfection();
         }
 
         public enum DeathCauses

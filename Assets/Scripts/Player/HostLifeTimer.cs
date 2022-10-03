@@ -6,6 +6,11 @@ namespace Player
 {
     public class HostLifeTimer : MonoBehaviour
     {
+        public event Action Began;
+        public event Action Ended;
+
+        public event Action SecondPassed;
+        
         public void BeginCountdown(Action callback)
         {
             StartCoroutine(LifeTime(callback));
@@ -13,12 +18,14 @@ namespace Player
         
         private IEnumerator LifeTime(Action callback)
         {
-            for (int i = 10; i >= 1; i--)
+            Began?.Invoke();
+            for (int i = 0; i < 10; i++)
             {
-                yield return new WaitForSeconds(1);
-                transform.localScale = new Vector3(0.05f, i * 0.01f, 0.05f);
+                SecondPassed?.Invoke();
+                yield return new WaitForSeconds(1f);
             }
             callback();
+            Ended?.Invoke();
         }
     }
 }

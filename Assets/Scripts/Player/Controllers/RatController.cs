@@ -16,7 +16,7 @@ namespace Player.Controllers
         
         public override void ApplyPlayerMovement()
         {
-            playerMovement = new RatMovement(_host);
+            PlayerMovement = new RatMovement(_host);
         }
         
         public override void GetShot()
@@ -34,7 +34,7 @@ namespace Player.Controllers
         public override void Interact(LivingNPC livingNpc)
         {
             base.Interact(livingNpc);
-            if (!isAlive) return;
+            if (!IsAlive) return;
             if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
             ChangeComponentsOn(livingNpc);
             DestroyPlayer();
