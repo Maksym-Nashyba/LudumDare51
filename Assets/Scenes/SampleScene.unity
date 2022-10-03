@@ -2793,12 +2793,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _patrolPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 152140766}
+      objectReference: {fileID: 535722043}
     - target: {fileID: 3396175170854898176, guid: d2a3bd372a3d5244d98ed3ea03b5e5cb,
         type: 3}
       propertyPath: _patrolPoints.Array.data[2]
       value: 
-      objectReference: {fileID: 535722043}
+      objectReference: {fileID: 152140766}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2a3bd372a3d5244d98ed3ea03b5e5cb, type: 3}
 --- !u!4 &1353945314 stripped

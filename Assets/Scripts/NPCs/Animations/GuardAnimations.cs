@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Misc;
+using UnityEngine;
 
 namespace NPCs
 {
@@ -15,7 +16,13 @@ namespace NPCs
 
         public override void PlayInteractAnimation(Vector3 target)
         {
-            throw new System.NotImplementedException();
+            Vector3 cameraPosition = ServiceLocator.Camera.transform.position;
+            if ((target - cameraPosition).sqrMagnitude < (transform.position - cameraPosition).sqrMagnitude)
+            {
+                GFXAnimator.Play("GuardInteractDown");
+                return;
+            }
+            GFXAnimator.Play("GuardInteractUp");
         }
     }
 }
