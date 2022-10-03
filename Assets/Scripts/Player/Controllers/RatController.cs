@@ -63,14 +63,20 @@ namespace Player.Controllers
             base.Interact(livingNpc);
             if (!IsAlive) return;
             if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
-            ChangeComponentsOn(livingNpc);
-            DestroyPlayer();
+            LeaveHost(livingNpc);
         }
 
         protected override void LeaveHost() 
         { 
             _host.Die(LivingNPC.DeathCauses.ParasiteLeaving); 
             InstantiateParasite(_host.transform).AddComponent<Player>();
+        }
+        
+        protected void LeaveHost(LivingNPC livingNpc)
+        {
+            _host.Die(LivingNPC.DeathCauses.ParasiteLeaving);
+            Player parasite = InstantiateParasite(_host.ParasiteTargetPoint).AddComponent<Player>();
+            parasite.GetComponent<PlayerController>().Interact(livingNpc);
         }
     }
 }
