@@ -17,7 +17,8 @@ namespace Player.Controllers
 
         public override void GetShot()
         {
-            DestroyPlayer();
+            ServiceLocator.Particles.Spawn(Particles.Type.Slime, Transform.position + Vector3.up*0.3f);
+            gameObject.SetActive(false);
         }
 
         public override void Interact(RatDoor ratDoor)

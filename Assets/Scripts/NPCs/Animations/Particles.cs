@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace NPCs
 {
@@ -13,6 +14,13 @@ namespace NPCs
             GameObject prefab = type == Type.Slime ? _slimeParticlesPrefab : _ketchupParticlesPrefab;
             ParticleSystem particleSystem = Instantiate(prefab, position, Quaternion.identity).GetComponent<ParticleSystem>();
             particleSystem.collision.AddPlane(_floor);
+            StartCoroutine(DestroyAfter(particleSystem.main.startLifetimeMultiplier, particleSystem.gameObject));
+        }
+
+        private IEnumerator DestroyAfter(float seconds, GameObject toDestroy)
+        {
+            yield return new WaitForSeconds(seconds);
+            Destroy(toDestroy);
         }
         
         public enum Type

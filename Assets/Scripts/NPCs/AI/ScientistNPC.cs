@@ -2,6 +2,7 @@
 using System.Collections;
 using Interactables;
 using Misc;
+using UnityEngine;
 
 namespace NPCs.AI
 {
@@ -37,7 +38,7 @@ namespace NPCs.AI
         private void ActivateAlarmBox(AlarmBox alarmBox)
         {
             alarmBox.Activate();
-            ChangeState(new IdleState());
+            Animations.PlayInteractAnimation(alarmBox.Position);
         }
         
         private class RunForAlarmState : State
@@ -69,6 +70,8 @@ namespace NPCs.AI
                     yield return null;
                 }
                 _scientist.ActivateAlarmBox(_alarmBox);
+                yield return new WaitForSeconds(1f);
+                _scientist.ChangeState(new IdleState());
             }
 
             public override bool IsRelaxed()

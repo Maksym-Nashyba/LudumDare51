@@ -27,5 +27,11 @@ namespace NPCs.AI
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        public override void Die(DeathCauses deathCause)
+        {
+            Animations.PlayDeath(deathCause);
+            base.Die(deathCause);
+        }
     }
 }

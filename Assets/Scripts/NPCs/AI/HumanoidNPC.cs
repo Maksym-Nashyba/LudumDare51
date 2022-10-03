@@ -25,6 +25,7 @@ namespace NPCs.AI
         {
             if(shouldOpen)door.OpenDoor();
             else door.CloseDoor();
+            Animations.PlayInteractAnimation(door.transform.position);
         }
 
         private void TryDetectDoors()
