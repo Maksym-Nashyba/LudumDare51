@@ -8,7 +8,6 @@ namespace Player.Controllers
     public sealed class GuardController: PlayerController
     {
         private LivingNPC _host;
-        private readonly float _minDistanceToDoor = 1.25f;
         
         protected override void Awake()
         {
@@ -29,7 +28,7 @@ namespace Player.Controllers
 
         public override void Interact(Door door)
         {
-            StartCoroutine(nameof(WalkToDoor), (door, _minDistanceToDoor));
+            StartCoroutine(nameof(WalkToDoor), door);
         }
 
         public override void Interact(LivingNPC livingNpc)
