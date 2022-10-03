@@ -198,7 +198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParasiteTargetPoint: {fileID: 6327722680709510769}
   Animations: {fileID: 1323098968455987000}
-  _panicMark: {fileID: 0}
+  _panicMark: {fileID: 3816892674516181565, guid: 8f67c7aba83deb94f8a6f235d86f3e39,
+    type: 3}
   _patrolPoints: []
   _gunPoint: {fileID: 1844728583329212947}
 --- !u!114 &5077397621626181204

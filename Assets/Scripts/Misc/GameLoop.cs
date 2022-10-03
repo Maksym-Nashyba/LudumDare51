@@ -2,7 +2,6 @@
 using Interactables;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UserInterface;
 
 namespace Misc
 {
