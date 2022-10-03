@@ -143,6 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678532ec34364feabb179519cca874cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AlarmActivated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5305541724710019295
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +157,6 @@ GameObject:
   - component: {fileID: 6408815002499404732}
   - component: {fileID: 6258669695820389553}
   - component: {fileID: 7833799587210508065}
-  - component: {fileID: 2992735752766259483}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -205,7 +207,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 94dcd7971fade7b43bf53117c6712506, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,16 +229,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2992735752766259483
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5305541724710019295}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
