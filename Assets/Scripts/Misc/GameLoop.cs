@@ -8,14 +8,14 @@ namespace Misc
     {
         [SerializeField] private GateOpeningLever _lever;
         [SerializeField] private EntryCutscene _entryCutscene;
-        [SerializeField] private LeverCutscene _leverCutscene;
+        [SerializeField] private Cutscene _leverCutscene;
         private bool _isPlayerControlled;
 
         public bool IsPlayerControlled => _isPlayerControlled;
 
         private void Awake()
         {
-            //_lever.Pulled.AddListener(ShowLeverCutscene);
+            _lever.Pulled.AddListener(ShowLeverCutscene);
         }
 
         private void Start()
@@ -32,7 +32,7 @@ namespace Misc
         private void ShowLeverCutscene()
         {
             _isPlayerControlled = false;
-            //_leverCutscene.Show();
+            _leverCutscene.Show(()=>_isPlayerControlled=true);
         }
 
         public void ActivateAlarm()
