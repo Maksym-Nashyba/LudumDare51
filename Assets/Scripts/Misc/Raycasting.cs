@@ -25,6 +25,7 @@ namespace Misc
 
         public static GameObject GetSelectedGameObject()
         {
+            if (!ServiceLocator.GameLoop.IsPlayerControlled) return null;
             Ray ray = ServiceLocator.Camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))

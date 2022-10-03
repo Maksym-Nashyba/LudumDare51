@@ -21,6 +21,7 @@ namespace Player.Controllers
         {
             ServiceLocator.Particles.Spawn(Particles.Type.Slime, Transform.position + Vector3.up*0.3f);
             gameObject.SetActive(false);
+            ServiceLocator.GameLoop.PlayerDied();
         }
 
         public override void Interact(RatDoor ratDoor)

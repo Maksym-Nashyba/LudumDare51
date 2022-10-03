@@ -26,6 +26,9 @@ namespace Misc
         public static GameObject ParasitePrefab => Instance._parasitePrefab;
 
         public static Particles Particles => Instance._particles;
+
+        public static GameLoop GameLoop => Instance._gameLoop;
+        
         public static Siren Siren => Instance._siren;
         
         public static UI UI => Instance._ui;

@@ -22,13 +22,14 @@ namespace Player
             if(Input.GetMouseButtonUp(0))
             {
                 GameObject selectedGameObject = Raycasting.GetSelectedGameObject();
+                if(selectedGameObject is null) return;
                 if (!selectedGameObject.TryGetComponent(out IInteractable interactable))
                 {
                     return;
                 }
                 interactable.AcceptVisitor(_playerController);
             }
-            else if(Input.GetMouseButtonUp(1))
+            else if(Input.GetMouseButtonUp(1) && ServiceLocator.GameLoop.IsPlayerControlled)
             {
                 _playerController.MovePlayer();
             }
