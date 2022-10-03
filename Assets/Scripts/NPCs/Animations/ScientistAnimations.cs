@@ -9,7 +9,7 @@
 
         public override void PlayDeath(LivingNPC.DeathCauses cause)
         {
-            throw new System.NotImplementedException();
+            //TODO make them lol
         }
     }
 }
