@@ -15,7 +15,7 @@ namespace Misc
 
         private void Awake()
         {
-            _lever.Pulled.AddListener(ShowLeverCutscene);
+            //_lever.Pulled.AddListener(ShowLeverCutscene);
         }
 
         private void Start()

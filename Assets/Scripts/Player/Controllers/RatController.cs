@@ -51,7 +51,7 @@ namespace Player.Controllers
 
         private IEnumerator ApproachAndEnterRatDoor(RatDoor door)
         {
-            Vector3 doorPosition = door.transform.position;
+            Vector3 doorPosition = door.transform.position + (transform.position - door.transform.position).normalized * 0.1f;
             _navMeshAgent.SetDestination(doorPosition);
             yield return new WaitUntil(() => (doorPosition - Transform.position).sqrMagnitude < _minDistanceToRatDoor * _minDistanceToRatDoor);
             Vector3 position = door.FindExitPosition(transform.position);
