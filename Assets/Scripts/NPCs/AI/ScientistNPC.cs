@@ -35,12 +35,15 @@ namespace NPCs.AI
             }
         }
 
-        
-        
         private void ActivateAlarmBox(AlarmBox alarmBox)
         {
             alarmBox.Activate();
             Animations.PlayInteractAnimation(alarmBox.Position);
+        }
+        
+        private void OnDestroy()
+        {
+            Detector.Detected -= OnDetected;
         }
         
         private class RunForAlarmState : State
