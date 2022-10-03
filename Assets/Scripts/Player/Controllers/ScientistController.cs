@@ -1,5 +1,4 @@
 ﻿using Interactables;
-using Misc;
 using NPCs;
 using Player.Movement;
 
@@ -28,15 +27,13 @@ namespace Player.Controllers
         
         public override void Interact(Door door)
         {
-            if (!Raycasting.CheckObstacleBetween(transform.position, door.gameObject)) return;
-            door.OpenDoor();
+            StartCoroutine(nameof(WalkToDoor), door);
         }
 
         public override void Interact(LivingNPC livingNpc)
         {
             base.Interact(livingNpc);
             if (!IsAlive) return;
-            if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
             LeaveHost(livingNpc);
         }
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Interactables;
-using Misc;
 using NPCs;
 using Player.Movement;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace Player.Controllers
 {
     public sealed class RatController: PlayerController
     {
-        private float _minDistanceToRatDoor = 0.25f;
+        private readonly float _minDistanceToRatDoor = 0.25f;
         private LivingNPC _host;
         private NavMeshAgent _navMeshAgent;
 
@@ -62,7 +61,6 @@ namespace Player.Controllers
         {
             base.Interact(livingNpc);
             if (!IsAlive) return;
-            if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
             LeaveHost(livingNpc);
         }
 

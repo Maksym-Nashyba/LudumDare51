@@ -1,3 +1,4 @@
+using System.Collections;
 using Interactables;
 using Misc;
 using NPCs;
@@ -11,6 +12,7 @@ namespace Player.Controllers
         protected Transform Transform;
         protected PlayerMovement PlayerMovement;
         protected bool IsAlive = true;
+        private readonly float _minDistanceToDoor = 1.25f;
 
         protected virtual void Awake()
         {
@@ -52,6 +54,16 @@ namespace Player.Controllers
         public virtual void Interact(GateOpeningLever gateOpeningLever)
         {
             
+        }
+        
+        protected IEnumerator WalkToDoor(Door door)
+        {
+            PlayerMovement.SetDestinationTo(door.transform.position);
+            yield return new WaitUntil(() => (door.transform.position - Transform.position).sqrMagnitude 
+                                             < _minDistanceToDoor * _minDistanceToDoor);
+            
+            if (!Raycasting.CheckObstacleBetween(transform.position, door.gameObject)) yield break;
+            door.OpenDoor();
         }
 
         protected float CheckDistanceTo(Transform pointTransform)

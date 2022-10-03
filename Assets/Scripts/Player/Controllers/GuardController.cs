@@ -1,5 +1,4 @@
 ﻿using Interactables;
-using Misc;
 using NPCs;
 using NPCs.AI;
 using Player.Movement;
@@ -9,6 +8,7 @@ namespace Player.Controllers
     public sealed class GuardController: PlayerController
     {
         private LivingNPC _host;
+        private readonly float _minDistanceToDoor = 1.25f;
         
         protected override void Awake()
         {
@@ -29,8 +29,7 @@ namespace Player.Controllers
 
         public override void Interact(Door door)
         {
-            if (!Raycasting.CheckObstacleBetween(transform.position, door.gameObject)) return;
-            door.OpenDoor();
+            StartCoroutine(nameof(WalkToDoor), (door, _minDistanceToDoor));
         }
 
         public override void Interact(LivingNPC livingNpc)

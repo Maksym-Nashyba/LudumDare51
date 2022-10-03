@@ -30,7 +30,6 @@ namespace Player.Controllers
         public override void Interact(LivingNPC livingNpc)
         {
             base.Interact(livingNpc);
-            if (!Raycasting.CheckObstacleBetween(transform.position, livingNpc.gameObject)) return;
             StartCoroutine(nameof(AnimateChangingHost), livingNpc);
         }
 
