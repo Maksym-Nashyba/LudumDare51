@@ -18,6 +18,7 @@ namespace Player
 
         private void Update()
         {
+            //if (!ServiceLocator.IsPlayerControlled) return;
             if(Input.GetMouseButtonUp(0))
             {
                 GameObject selectedGameObject = Raycasting.GetSelectedGameObject();
