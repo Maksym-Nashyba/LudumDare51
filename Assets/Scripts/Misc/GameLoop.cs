@@ -40,8 +40,8 @@ namespace Misc
         public void ActivateAlarm()
         {
             _isPlayerControlled = false;
+            ServiceLocator.Siren.Activate();
             StartCoroutine(nameof(RestartGame));
-
         }
         
         public void PlayerDied()
