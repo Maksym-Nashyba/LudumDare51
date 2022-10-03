@@ -1,10 +1,10 @@
 ﻿namespace NPCs
 {
-    public class GuardAnimations : NPCAnimations
+    public class RatAnimations : NPCAnimations
     {
         public override void PlayStartInfection()
         {
-            GFXAnimator.Play("GuardStartInfection");
+            GFXAnimator.Play("RatStartInfection");
         }
 
         public override void PlayDeath(LivingNPC.DeathCauses cause)
